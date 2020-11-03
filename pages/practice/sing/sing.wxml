@@ -1,0 +1,138 @@
+<wxs module="noteNumber" src="./toNote.wxs"></wxs>
+
+<!-- 遮盖层 √-->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap="hideRule">
+	<view class='ruleZhezhaoContent'>
+		教学内容
+	</view>
+</view>
+
+<!-- 求助遮盖层 -->
+<!-- <view class="ruleZhezhao {{isRuleTrueHelp?'isRuleShow':'isRuleHide'}}" bindtap="hideRuleHelp">
+  <view style="position: relative">
+    <view id="computerText">电脑示范</view>
+    <view id="computer" catchtap="computerHelp">
+      <image mode="scaleToFit" src="/image/sing/computer.png" style="width:70rpx; height:70rpx"></image>
+    </view>
+    <view id="manualText">人声示范</view>
+    <view id="manual" catchtap="manualHelp">
+      <image mode="scaleToFit" src="/image/sing/manual.png" style="width:70rpx; height:70rpx"></image>
+    </view>
+  </view>
+</view> -->
+
+<!-- 提交遮盖层 -->
+<view class="ruleZhezhao {{isRuleTrueUp?'isRuleShow':'isRuleHide'}}" bindtap="hideRuleUp">
+
+	<view class="upload">
+		<i-card title="我的得分" extra="{{score}}" i-class="title">
+			<!-- <view slot="content">93</view> -->
+			<view slot="content">还需要继续努力哦~</view>
+		</i-card>
+		<i-card title="改正提示" extra="" i-class="title">
+			<view slot="content">{{text}}</view>
+		</i-card>
+		<i-card title="自我评价" extra="" i-class="title">
+			<view slot="content" id="imgContent">
+				<image wx:for="{{size}}" mode="aspectFit" src="/image/sing/01.png" style="height:{{item}}rpx;" catchtap="handleJudgeTap" data-id="{{index+1}}" wx:key="item"></image>
+			</view>
+		</i-card>
+	</view>
+</view>
+
+<view style="display: relative;">
+	<!-- 五线谱 √-->
+	<scroll-view scroll-y="true" style="height:{{scroll_height}}px;background:white" hidden="{{showListStatus}}">
+		<!--musicScore wx:if="{{!showListStatus}}" part="{{part}}"> </musicScore-->
+		<image src="/image/puli.png"></image>
+	</scroll-view>
+	
+	<!--模态框 √-->
+	<view class="cu-modal {{modalName!=null?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">确定切换题目？</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close"style="color:#ff7498"></text>
+				</view>
+			</view>
+			<view class="padding-xl">
+				切换题目会清空你之前的作答。
+			</view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left" data-name='cancel' data-modal="{{modalName}}" bindtap="hideModal">取消</view>
+				<view class="action margin-0 flex-sub  solid-left " style="color:#ff7498" data-name='ok' data-modal="{{modalName}}" bindtap="hideModal">确定</view>
+			</view>
+		</view>
+	</view>
+  <!-- 电脑示范音进度条 √-->
+  <view class="cu-progress round margin-top xs progress" wx:if="{{processFlag}}">
+    <view class="bg-blue" style="width:{{loading?'61.8%':''}};"></view>
+  </view>
+  <view class="standardWrapper" bindtap="yincha">
+    <image class="yincha" src="/image/sing/yincha.png" mode="aspectFit"></image>
+    <view>标准音</view>
+  </view>
+	<!-- 按钮部分 -->
+	<view id="buttons">
+    <view class="quesNumber">第1题</view>
+
+		<view id="stop" bindtap="handleStopTap">
+			<image mode="aspectFit" src="{{stopImage[stopFlag]}}" style="width:200rpx; height:200rpx;margin-top:-40rpx"></image>
+		</view>
+
+		<view id='record' bindtap="handleRecordTap" style="background: {{recordFlag==0?'-webkit-linear-gradient(top,white,#F4F2FF)':'-webkit-linear-gradient(top,#7087FF,#495CFF)'}}">
+			<!-- 增加了一个表示已经录音的实心圆角矩形-->
+			<view id="hasRecord" animation="{{fadeInA}}">
+			</view>
+			<image mode="aspectFit" src="{{recordImage[recordFlag]}}" style="width:100rpx; height:100rpx;"></image>
+		</view>
+
+		<view id="upload" bindtap="handleUploadTap" style="background: {{uploadFlag==0?'-webkit-linear-gradient(top,white,#F4F2FF)':'-webkit-linear-gradient(top,#7087FF,#495CFF)'}}">
+			<image src="{{uploadImage[uploadFlag]}}" style="width:80rpx; height:80rpx"></image>
+		</view>
+
+		<!--  加了一个重做按钮 -->
+		<view class="redo" bindtap="redoTap" wx:if="{{showAnswerFlag}}">
+			重新答题
+		</view>
+	</view>
+	<!-- 底部tabbar -->
+	<view id="tabbar">
+    <view class="left">
+      <image mode="aspectFit" style="height: 96rpx;" src="/image/sing/music_list.png" bindtap="showList" data-id="0"></image>
+    </view>
+    <view class="right">
+      <text class="cuIcon-back lg left-arrow"></text>
+      <text class="cuIcon-right lg right-arrow"></text>
+      <view bindtap="handleLastTap" class="last">上一题</view>
+      <view bindtap="handleNextTap" class="next">下一题</view>
+    </view>
+
+	</view>
+	<!-- list实现 -->
+	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showListStatus}}">
+		<view class="listHead">
+      <view class="listTitle">单声部旋律</view>
+			<view id="back" bindtap="hideList">×</view>
+		</view>
+
+		<view>
+			<i-cell-group>
+				<block wx:for="{{lists}}" wx:key="index">
+          <view class="cell" bindtap="chooseQuestion" data-id="{{index}}">
+            <view class="cell-index">{{index+1}}</view>
+            <view class="cell-state">{{item.done==1?'提交成功':'未提交'}}</view>
+            <view class="cell-score">{{item.done==1?item.score+'分':''}}</view>
+          </view>
+          <view class="boundary"></view>
+				</block>
+			</i-cell-group>
+		</view>
+
+	</view>
+	<!-- 助教 -->
+	<view id="zhushou" bindtap="handleAssTap">
+		<image id="assistant" src="{{assistantImage[assFlag]}}"></image>
+	</view>
+</view>

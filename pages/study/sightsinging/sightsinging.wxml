@@ -1,0 +1,183 @@
+<wxs module="noteNumber" src="./toNote.wxs"></wxs>
+
+<view class="layout" wx:if="{{stateFlag==0}}">
+
+	<!-- 遮罩层 -->
+	<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap="hideRule">
+		<view class='ruleZhezhaoContent'>
+			教学内容
+		</view>
+	</view>
+
+	<!-- 顶部 -->
+	<view class="top" style="padding-right: calc(100vmax - {{width-10}}px);">
+		<view class="back" bindtap="back">
+			<view></view>
+			<text class="cuIcon-back lg myicon"></text>
+		</view>
+		<view class="top-main" style="width: calc({{width-10}}px - 9.6vmin);">
+			<view wx:if="{{!homeworkStatus}}" class="last" hover-class="last-hover" bindtap="handleLastTap">上一题</view>
+			<view class="top-title">{{type}} {{currentIndex+1}}/{{songSum}}</view>
+			<view wx:if="{{!homeworkStatus}}" class="next {{stateFlag==0&&currentIndex==songSum-1?'blue':''}}" hover-class="next-hover {{stateFlag==0&&currentIndex==songSum-1?'blue':''}}" bindtap="handleNextTap">{{currentIndex==songSum-1?'查看总分':'下一题'}}</view>
+		</view>
+		<view wx:if="{{!homeworkStatus}}" class="list" style="right: calc(100vmax - {{width-10}}px);" bindtap="showList" data-id="0">
+			<text class="cuIcon-sort lg myicon" style="font-size: 8vmin;"></text>
+			<view></view>
+		</view>
+	</view>
+
+	<!--模态框-->
+	<!--view class="cu-modal {{modalName!=null?'show':''}}">
+		<view class="cu-dialog">
+			<view class="cu-bar bg-white justify-end">
+				<view class="content">确定切换题目？</view>
+				<view class="action" bindtap="hideModal">
+					<text class="cuIcon-close"style="color:#ff7498"></text>
+				</view>
+			</view>
+			<view class="padding-xl">
+				切换题目会清空你之前的作答。
+			</view>
+			<view class="cu-bar bg-white">
+				<view class="action margin-0 flex-sub  solid-left" data-name='cancel' data-modal="{{modalName}}" bindtap="hideModal">取消</view>
+				<view class="action margin-0 flex-sub  solid-left " style="color:#ff7498" data-name='ok' data-modal="{{modalName}}" bindtap="hideModal">确定</view>
+			</view>
+		</view>
+	</view-->
+
+	<!-- 五线谱 -->
+	<view class="staveWrapper" style="height:{{scroll_height}}px;background:white;" wx:if="{{!showListStatus}}">
+		<!-- 悬浮框 -->
+		<view class="floating" style="top: cal(24rpx + 11.73vmin); right: 40rpx;">
+			<!-- 节拍器 -->
+			<metronome beat="{{questionList[currentIndex].beat}}" bpm="{{questionList[currentIndex].bpm}}" note="{{questionList[currentIndex].note}}"></metronome>
+			<view style="font-size: 3.2vmin; color: #7A7A7A; margin-right: 2vmin;">节拍器</view>
+		</view>
+		<!--musicScore wx:if="{{!showListStatus}}" part="{{part}}"> </musicScore-->
+		<image src="{{base}}{{questionList[currentIndex].ques_pic_path}}" mode="widthFix" style="width:100%;padding-left:5%;padding-right:5%"></image>
+	</view>
+	<!-- tabbar -->
+	<view class="tabbar">
+
+		<view class="tabbarL">
+
+			<!-- 标准音 -->
+			<view class="buttonWrapper" bindtap="yincha">
+				<image class="yincha" mode="apectFit" src="/image/sing/yincha.png"></image>
+				<view class="tab-text">标准音</view>
+			</view>
+			<!-- 范例音 -->
+			<view class="buttonWrapper" bindtap="computerHelp">
+				<text class="cuIcon-people{{teacherFlag?'fill':''}} lg iconBlue"></text>
+				<view class="tab-text">范例音</view>
+			</view>
+			<!-- 暂停/继续 -->
+			<view class="buttonWrapper">
+				<text bindtap="handleStopTap" class="cuIcon-{{stopFlag?'stop':'playfill'}} lg iconBlue"></text>
+				<view class="tab-text">{{finishRecordFlag==1?'播放录音':'点击话筒录音'}}</view>
+			</view>
+
+		</view>
+
+		<!-- 录音按钮 -->
+		<view bindtap="handleRecordTap" class="micWrapper" style="background: {{recordFlag==0?'-webkit-linear-gradient(top,white,#F4F2FF)':'-webkit-linear-gradient(top,#7087FF,#495CFF)'}}">
+			<view id="hasRecord" animation="{{fadeInA}}"></view>
+			<image mode="aspectFit" src="{{recordImage[recordFlag]}}" class="mic"></image>
+		</view>
+
+		<view class="tabbarR">
+
+			<!-- *** 进度条未实现动态加载 *** -->
+			<view class="progressWrapper">
+				<view class="cu-progress round xs progress">
+					<view class="bgblue" style="width:{{loading?percent:''}};"></view>
+				</view>
+			</view>
+
+			<!-- 提交 -->
+			<view class="upload" bindtap="handleUploadTap">
+				<!-- 由于按钮特殊性，移除了图标动态变化的功能 -->
+				<image src="/image/sing/upload.png" class="uploadimg"></image>
+				<view style="padding-right: 4vmin;">{{questionList[currentIndex].ifdo==0?'提交':'已提交'}}</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- list实现 -->
+	<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showListStatus}}">
+		<view class="listHead">
+			<view class="listTitle">{{type}}</view>
+			<view id="back" bindtap="hideList" data-id="0">×</view>
+		</view>
+
+		<view>
+			<i-cell-group>
+				<block wx:for="{{questionList}}" wx:key="item">
+					<view class="cell" bindtap="chooseQuestion" data-id="{{index}}">
+						<view class="cell-index">{{index+1}}</view>
+						<view class="cell-state">{{item.ifdo==1?'提交成功':'未提交'}}</view>
+						<view class="cell-score">{{item.ifdo==1?item.score+'分':''}}</view>
+					</view>
+					<view class="boundary"></view>
+				</block>
+			</i-cell-group>
+		</view>
+
+	</view>
+
+	<!-- upload list实现 -->
+	<view animation="{{animationData1}}" class="commodity_attr_box" wx:if="{{showListStatus1}}">
+		<view class="listHead">
+			<view class="listTitle">{{type}}</view>
+			<view id="back" bindtap="hideList" data-id="1">×</view>
+		</view>
+		<view>
+			<view class="area1">
+				<view class="head">
+					<text class="cuIcon-title lg myicon" style="color: #FFC85D;"></text>
+					<view class="listTitle-2">我的得分</view>
+				</view>
+				<view class="content1">
+					<view>
+						{{questionList[currentIndex].score}}
+					</view>
+					<view class="assWrapper">
+						<image src="/image/sing/assistant/3.png" mode="aspectFit" style="margin-left: 1.5vmin; height: 9.3vmin; width: 9.3vmin;"></image>
+					</view>
+					<view class="orangeCircle"></view>
+				</view>
+			</view>
+
+			<view class="area2">
+				<view class="head">
+					<text class="cuIcon-title lg myicon" style="color: #FF7498;"></text>
+					<view class="listTitle-2">改正提示</view>
+				</view>
+				<view class="content2">
+					{{questionList[currentIndex].text}}
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>
+
+<view wx:if="{{stateFlag==1}}" class="layout">
+	<view class="nav">
+		<text class="cuIcon-back lg myicon navback" bindtap="popstack"></text>
+	</view>
+	<view class="upTitle">
+		<view class="type">{{type}}</view>
+		<view class="score">您的得分是 <text class="scoreNum">{{noteNumber.getAvg(questionList)}}</text> 分！</view>
+	</view>
+	<view class="questions">
+		<block wx:for="{{questionList}}" wx:key="item">
+			<view class="circle wrong {{item.score>=60?'true':''}}" bindtap="gotoDetail" data-index="{{index}}">
+				{{index+1}}
+			</view>
+		</block>
+	</view>
+	<view class="btnWrapper">
+		<view class="checkBtn" bindtap="gotoHomework" data-flag="{{finishedLessonFlag}}">{{finishedLessonFlag?'查看作业':'继续答题'}}</view>
+	</view>
+</view>

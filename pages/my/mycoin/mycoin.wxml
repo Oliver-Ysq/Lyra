@@ -1,0 +1,58 @@
+<view class="ctn">
+	<view class="wrapper">
+		<view class="goldWrapper">
+			<image class="coin" src="/image/my/rmb.png"></image>
+			<view class="money">30.00</view>
+		</view>
+    <view class="question">如何获取？</view>
+	</view>
+
+	<scroll-view scroll-x class="bg-white nav navi">
+		<view class="flex text-center">
+			<view class="cu-item flex-sub normalSize {{index==TabCur?'bigSize':''}} {{index==TabCur?'color_'+TabCur:''}}" wx:for="{{tabList}}" wx:key="item" bindtap="tabSelect" data-id="{{index}}">
+				{{item}}
+			</view>
+		</view>
+	</scroll-view>
+
+	<swiper class="swiper" current="{{TabCur}}" duration="500">
+		<swiper-item catchtouchmove="banTouchMove">
+			<block wx:for="{{infoList}}" wx:key="item">
+				<view class="card">
+					<view class="detail" wx:if="{{item.type==0}}">
+						<view class="line1">打赏给{{item.who}}</view>
+						<view class="line2">{{item.date}}</view>
+					</view>
+					<view class="detail" wx:if="{{item.type==1}}">
+						<view class="line1">来自{{item.who}}的打赏</view>
+						<view class="line2">{{item.date}}</view>
+					</view>
+					<view class="number">{{item.type==0?'-':'+'}}{{item.number}}</view>
+				</view>
+			</block>
+		</swiper-item>
+		<swiper-item catchtouchmove="banTouchMove">
+			<block wx:for="{{in}}" wx:key="item">
+				<view class="card">
+					<view class="detail">
+						<view class="line1">来自{{item.who}}的打赏</view>
+						<view class="line2">{{item.date}}</view>
+					</view>
+					<view class="number">+{{item.number}}</view>
+				</view>
+			</block>
+		</swiper-item>
+		<swiper-item catchtouchmove="banTouchMove">
+      <block wx:for="{{infoList}}" wx:key="item">
+				<view class="card">
+					<view class="detail">
+						<view class="line1">打赏给{{item.who}}</view>
+						<view class="line2">{{item.date}}</view>
+					</view>
+          <view class="number">-{{item.number}}</view>
+				</view>
+			</block>
+    </swiper-item>
+	</swiper>
+
+</view>

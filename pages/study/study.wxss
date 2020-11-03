@@ -1,0 +1,107 @@
+.layout {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background: white;
+}
+
+.week {
+  font-size: 48rpx;
+  margin-left: 40rpx;
+}
+
+.card {
+  width: 700rpx;
+  height: 280rpx;
+  border-radius: 20rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30rpx;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.card1 {
+  background: rgba(54, 84, 253, .1);
+  box-shadow: 0 10rpx 20rpx rgba(54, 84, 253, .2);
+}
+
+
+.card2 {
+  background: rgba(54, 84, 253, .2);
+  box-shadow: 0 10rpx 20rpx rgba(54, 84, 253, .3);
+}
+.hover {
+  box-shadow:0 10rpx 20rpx rgba(54, 84, 253, .2) inset; 
+}
+.courseName {
+  font-size: 36rpx;
+  color: #38308D;
+  padding-left: 40rpx;
+  font-weight: bold;
+}
+
+.teacher {
+  font-size: 22rpx;
+  color: #38308D;
+  padding-left: 40rpx;
+  margin-top: 4rpx;
+}
+
+.processWrapper {
+  padding-left: 40rpx;
+  flex: 9;
+}
+
+.process {
+  font-size: 24rpx;
+  color: #38308D;
+  display: inline-block;
+  width: 240rpx;
+}
+
+.task {
+  font-size: 24rpx;
+  color: #3654FD;
+  margin-left: 40rpx;
+  display: inline-block;
+}
+
+.term {
+  position: absolute;
+  top: 48rpx;
+  right: 60rpx;
+  color: #38308D;
+  font-size: 22rpx;
+}
+
+.myPWrapper {
+  flex: 16;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  flex: 27;
+  padding-top: 40rpx;
+}
+
+.myP {
+  width: 630rpx !important;
+  border: 2rpx solid var(--blue);
+  padding: 4rpx;
+  height: 24rpx;
+  background-color: transparent;
+}
+
+.arrow{
+  position: absolute;
+  right: 32rpx;
+  font-size: 40rpx;
+  top: calc(140rpx - 20rpx);
+}

@@ -1,0 +1,30 @@
+<wxs module="hearChoice" src="./hear_choice.wxs"></wxs>
+<progress percent="{{progress}}" hidden="{{progressFlag}}" activeColor="#3654fd" stroke-width="3" />
+<view class='productNav'>
+	<!-- 左侧 -->
+	<view class='left'>
+		<view wx:for="{{totalLessons}}" class="{{active==index?'selected':'normal'}}" id="{{index}}" bindtap="switchNav" wx:key="item">课次{{index+1}}</view>
+	</view>
+	<!-- 右侧 -->
+	<view class='right'>
+	<view class="score-board">当前课次总得分： {{totalScore}}分    </view>
+		<view class='type'>
+			<!-- current:当前所在滑块的 index -->
+			<!-- vertical:滑动方向是否为纵向 -->
+			<swiper current='{{currentTab}}' vertical='{{true}}'>
+				<!-- catchtouchmove 阻止弹窗后滚动穿透 -->
+				<swiper-item wx:for="totalLessons" wx:for-index="number" id="{{index}}" wx:key="item" catchtouchmove="false">
+					<scroll-view class="scroll" scroll-y>
+						<view wx:for="{{type==0?singList:hearList}}" wx:for-index="nth" class="cell" hover-class="cell-hover" wx:key="item" catchtap="goto" data-flag="{{hearChoice.judge(singList,hearList,type,nth,stateList)}}" data-id="{{number}}" data-name="{{type==0?singList[nth]:hearList[nth]}}" id="{{number}}" data-nameid="{{nth+1}}">
+							<text class="subtitle">{{nth+1}}</text>
+							<text class="subtitle">{{type==0?singList[nth]:hearList[nth]}}</text>
+							<text class="state"style="color:{{hearChoice.judge(singList,hearList,type,nth,stateList)?'7C7C7C':'gray'}}">{{hearChoice.judge(singList,hearList,type,nth,stateList)?'已完成':'未完成'}}</text>
+						</view>
+					</scroll-view>
+				</swiper-item>
+			</swiper>
+		</view>
+
+		
+	</view>
+</view>

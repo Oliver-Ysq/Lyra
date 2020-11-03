@@ -1,0 +1,210 @@
+<!-- wx:for中的列表为后端传入的歌曲名称（或者编号）的顺序列表，只要保证wx:key的唯一性就可以 -->
+<wxs module="filter" src="./fit.wxs"></wxs>
+<progress percent="{{progress}}" hidden="{{progressFlag}}"activeColor="#3654fd" stroke-width="3"/>
+<view class='container'>
+  <!--Tab布局-->
+  <view class='title'>
+    <view wx:for="{{singTitle}}" class="titleSel" bindtap="titleClick" data-idx="{{index}}" wx:key="item">
+      <text style="{{index == currentIndex ? 'color: rgb(78, 74, 128);' : 'color: rgb(158,154,197);'}}">{{item}}</text>
+      <hr class="{{index == currentIndex ? 'headerLineSel' : 'headerLineUnsel'}}" />
+    </view>
+  </view>
+
+  <!--内容布局-->
+  <swiper class='swiper' bindchange='pagechange' current='{{currentIndex}}'>
+
+    <swiper-item class="swiper" wx:for="{{swiperList}}" wx:for-item="parent" wx:for-index="pIndex" wx:key="parent">
+      <view wx:for="{{parent}}" wx:for-index="number" id="{{item.id}}" class="{{item.type}}" wx:key="item">
+        <!--  -->
+        <view id="dot" style="background: rgb(255, 187, 55);"></view>
+        <text>{{item.name}}</text>
+        <image src="{{item.img}}" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <!--circle id='circle1' bg='circle_bg1' draw='circle_draw1'></circle-->
+        <view class="box">
+          <view wx:for="{{list[pIndex][number][0]}}" wx:for-index="nth" wx:key="item" class="item{{number+1}}" style="background:rgb({{colorList[number]}},{{filter.toPer(item[0],item[1])}})"bindtap="goToSing" data-id="{{sortId+'0'+(number+1)+'01'+ filter.toFix(nth+1)}}">{{nth+1}}</view>
+        </view>
+      </view>
+    </swiper-item>
+
+    <!-- <swiper-item class='swiper'>
+
+      <view id="card1" style="margin-top: 5vh">
+
+        <view id="dot" style="background: rgb(255, 187, 55);"></view>
+        <text>西洋</text>
+        <image src="/image/singchoice/05.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}" wx:key="item" class="item1" bindtap="goToSing" data-id="{{sortId+'0100'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+
+      </view>
+
+      <view id="card2">
+        <view id="dot" style="background: rgb(163,215,18);"></view>
+        <text>中国</text>
+        <image src="/image/singchoice/02.png" style="transform:rotate(45deg); position:absolute;right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[10,20,30,40,50,60,70,80,90,100]}}" wx:key="item" class="item2" bindtap="goToSing" data-id="{{sortId+'0200'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+
+      <view id="card3" style=" margin-bottom: 5vh;">
+        <view id="dot" style="background: rgb(255,160,166);"></view>
+        <text>少数民族</text>
+        <image src="/image/singchoice/03.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[11,22,33,44,55,66,77,88,99,110]}}" wx:key="item" class="item3" bindtap="goToSing" data-id="{{sortId+'0300'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+
+    </swiper-item> -->
+
+
+    <!-- 双声部 -->
+    <!-- <swiper-item class='swiper'>
+      <view id="card1" style="margin-top: 5vh">
+        <view id="dot" style="background: rgb(255,187,55);"></view>
+        <text>西洋</text>
+        <image src="/image/singchoice/05.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[1,2,3,4,5,6,7,8,9,10]}}" wx:key="item" class="item1" bindtap="goToSing" data-id="{{sortId+'0100'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+      <view id="card2">
+        <view id="dot" style="background: rgb(163,215,18);"></view>
+        <text>中国</text>
+        <image src="/image/singchoice/02.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[10,20,30,40,50,60,70,80,90,100]}}" wx:key="item" class="item2" bindtap="goToSing" data-id="{{sortId+'0200'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+      <view id="card3" style=" margin-bottom: 5vh;">
+        <view id="dot" style="background: rgb(255,160,166);"></view>
+        <text>少数民族</text>
+        <image src="/image/singchoice/03.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[11,22,33,44,55,66,77,88,99,110]}}" wx:key="item" class="item3" bindtap="goToSing" data-id="{{sortId+'0300'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+
+    </swiper-item> -->
+
+    <!-- 视谱即唱 -->
+    <!-- <swiper-item class='swiper'>
+      <view id="card1" style="margin-top: 5vh">
+        <view id="dot" style="background: rgb(255,187,55);"></view>
+        <text>西洋</text>
+        <image src="/image/singchoice/05.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]}}" wx:key="item" class="item1" bindtap="goToSing" data-id="{{sortId+'0100'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+      <view id="card2">
+        <view id="dot" style="background: rgb(163,215,18);"></view>
+        <text>中国</text>
+        <image src="/image/singchoice/02.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[10,20,30,40,50,60,70,80,90,100]}}" wx:key="item" class="item2" bindtap="goToSing" data-id="{{sortId+'0200'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+      <view id="card3" style=" margin-bottom: 5vh;">
+        <view id="dot" style="background: rgb(255,160,166);"></view>
+        <text>少数民族</text>
+        <image src="/image/singchoice/03.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{[11,22,33,44,55,66,77,88,99,111,222,333,444]}}" wx:key="item" class="item3" bindtap="goToSing" data-id="{{sortId+'0300'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+    </swiper-item>
+  -->
+
+    <!-- 多项音乐语言阅读 -->
+    <swiper-item class='swiper'>
+
+      <view id="card1" class="top">
+        <view id="dot" style="background: rgb(255,187,55);"></view>
+        <text>西洋古典音乐</text>
+        <image src="/image/singchoice/05.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+
+        <view class="caption-wrap">
+          <i-collapse name="{{name}}" accordion>
+            <i-collapse-item name="name1" title="交响乐" i-class-title="collapse-item-title" i-class-content="collapse-item-content" i-class="noborder">
+              <view slot="content">
+                <view class="box" style="margin-left: 3%">
+                  <view wx:for="{{list[3][0][0]}}" wx:key="item" class="item1"style="background:rgb({{colorList[0]}},{{item[0]}})" bindtap="goToSing" data-id="{{sortId+'0101'+ filter.toFix(index+1)}}">{{index+1}}</view>
+                </view>
+              </view>
+            </i-collapse-item>
+
+            <i-collapse-item name="name2" title="歌剧舞剧" i-class-title="collapse-item-title" i-class-content="collapse-item-content" i-class="noborder">
+              <view slot="content" i-class-content="green-text">
+                <view class="box" style="margin-left: 3%">
+                  <view wx:for="{{list[3][0][1]}}" wx:key="item" style="background:rgb({{colorList[0]}},{{item[0]}})"class="item1" bindtap="goToSing" data-id="{{sortId+'0102'+ filter.toFix(index+1)}}">{{index+1}}</view>
+                </view>
+              </view>
+            </i-collapse-item>
+          </i-collapse>
+        </view>
+
+
+      </view>
+
+      <view id="card2">
+        <view id="dot" style="background: rgb(163,215,18);"></view>
+        <text>中国传统音乐</text>
+        <image src="/image/singchoice/02.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+
+        <view class="caption-wrap">
+          <i-collapse name="{{name}}" accordion>
+            <i-collapse-item name="name1" title="传统器乐曲主题" i-class-title="collapse-item-title" i-class-content="collapse-item-content" i-class="noborder">
+              <view slot="content">
+                <view class="box" style="margin-left: 3%">
+                  <view wx:for="{{list[3][1][0]}}" wx:key="item"style="background:rgb({{colorList[1]}},{{item[0]}})" class="item2" bindtap="goToSing" data-id="{{sortId+'0201'+ filter.toFix(index+1)}}">{{index+1}}</view>
+                </view>
+              </view>
+            </i-collapse-item>
+
+            <i-collapse-item name="name2" title="地方音乐" i-class-title="collapse-item-title" i-class-content="collapse-item-content" i-class="noborder">
+              <view slot="content" i-class-content="green-text">
+                <view class="box" style="margin-left: 3%">
+                  <view wx:for="{{list[3][1][1]}}" wx:key="item" style="background:rgb({{colorList[1]}},{{item[0]}})"class="item2" bindtap="goToSing" data-id="{{sortId+'0202'+ filter.toFix(index+1)}}">{{index+1}}</view>
+                </view>
+              </view>
+            </i-collapse-item>
+
+            <i-collapse-item name="name3" title="地方戏曲" i-class-title="collapse-item-title" i-class-content="collapse-item-content" i-class="noborder">
+              <view slot="content" i-class-content="green-text">
+                <view class="box" style="margin-left: 3%">
+                  <view wx:for="{{[41,42,43]}}" wx:key="item"style="background:rgb({{colorList[1]}},{{item[0]}})" class="item2" bindtap="goToSing" data-id="{{sortId+'0203'+ filter.toFix(index+1)}}">{{index+1}}</view>
+                </view>
+              </view>
+            </i-collapse-item>
+          </i-collapse>
+        </view>
+
+      </view>
+
+      <view id="card3">
+        <view id="dot" style="background: rgb(255,160,166);"></view>
+        <text>世界民族音乐</text>
+        <image src="/image/singchoice/06.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+        <view class="box">
+          <view wx:for="{{list[3][2][0]}}" wx:key="item" style="background:rgb({{colorList[2]}},{{item[0]}})"class="item3" bindtap="goToSing" data-id="{{sortId+'0301'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+      </view>
+
+      <view id="card4" class="bottom">
+        <view id="dot" style="background: rgb(126,147,255);"></view>
+        <text>流行音乐</text>
+        <image src="/image/singchoice/04.png" style="transform:rotate(45deg); position:absolute; right:-10vw; top:-10vw; height:200rpx; width: 200rpx;"></image>
+
+        <view class="box">
+          <view wx:for="{{list[3][3][0]}}" wx:key="item"style="background:rgb({{colorList[3]}},{{item[0]}})" class="item4" bindtap="goToSing" data-id="{{sortId+'0302'+ filter.toFix(index+1)}}">{{index+1}}</view>
+        </view>
+
+      </view>
+
+    </swiper-item>
+
+  </swiper>
+</view>

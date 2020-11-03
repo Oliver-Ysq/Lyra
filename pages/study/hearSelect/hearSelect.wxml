@@ -1,0 +1,143 @@
+<wxs module="pkg">
+	function upper(s) {
+		return s.toUpperCase()
+	}
+
+	function myslice(s) {
+		s = s.slice(2, s.length)
+		return s
+	}
+	module.exports = {
+		upper: upper,
+		myslice: myslice
+	}
+</wxs>
+<view class="floating" wx:if="{{stateFlag<2}}" bindtouchstart="bindTouchStart" catchtouchmove="bindTouchMove" style="{{moveFlag?'top:' + top + 'px; right:' + right + 'px;':'top:60px; right: 22px'}}">
+	<!-- 播放器 -->
+
+	<!-- 节拍器 -->
+	<!--view class="beatWrapper">
+		<image class="beat" src="/image/hear/hearSelect/beat.png" mode="aspectFit" bindtap="playBeat"></image>
+	</view-->
+	<metronome beat="{{questionList[currentIndex].beat}}" bpm="{{questionList[currentIndex].bpm}}" note="{{questionList[currentIndex].note}}"></metronome>
+	<!-- 标准音 -->
+	<view class="standard" bindtap="playStandard">
+		<image src="/image/sing/yincha.png" mode="aspectFit" style="height: 6.4vmin; width: 6.4vmin"></image>
+	</view>
+	<!-- 快进等待 -->
+	<view class="skip" wx:if="{{questionList[currentIndex].skipFlag}}" bindtap="handleSkip">
+		<text class="cuIcon-play_forward_fill lg iconBlue stop">
+			</text>
+	</view>
+	<!-- 进度条 -->
+	<view wx:if="{{questionList[currentIndex].showProcessFlag && questionList[currentIndex].ques_audio_path}}" class="audioWrapper">
+		<text bindtap="handlePlay" class="cuIcon-{{isplaying?'icloading':'playfill'}} {{rotateFlag?'rotate':''}} lg iconBlue stop">
+			</text>
+		<view class="cu-progress round xs progress">
+			<view class="bgblue" style="width:{{loading?questionList[currentIndex].percent+'%':''}}; {{rotateFlag?'':'transition: null;'}}"></view>
+		</view>
+	</view>
+	<view>
+		{{questionList[currentIndex].floatingText}}
+	</view>
+</view>
+
+<!-- 顶部 -->
+<view class="topWrapper">
+	<view class="top" wx:if="{{stateFlag<2}}" style="padding-right: calc(100vmax - {{width-10}}px);">
+		<view class="back" bindtap="back">
+			<view></view>
+			<text class="cuIcon-back lg myicon"></text>
+		</view>
+		<view class="top-main" style="width: calc({{width-10}}px - 9.6vmin);">
+			<view class="last" hover-class="last-hover" bindtap="last">上一题</view>
+			<view class="top-title">{{type}} {{currentIndex+1}}/{{totalNumber}}</view>
+			<view class="next {{stateFlag==0&&currentIndex==totalNumber-1?'blue':''}}" hover-class="next-hover {{stateFlag==0&&currentIndex==totalNumber-1?'blue':''}} "bindtap="next">{{currentIndex==totalNumber-1?'提交':'下一题'}}</view>
+		</view>
+		<view class="list" style="right: calc(100vmax - {{width-10}}px);" bindtap="gotoList">
+			<text class="cuIcon-sort lg myicon" style="font-size: 8vmin;"></text>
+			<view></view>
+		</view>
+	</view>
+</view>
+
+<view class="layout" wx:if="{{stateFlag<2}}">
+
+	<view class="content">
+		<block wx:for="{{questionList}}" wx:key="item" wx:if="{{currentIndex==index}}">
+			<view class="main-title">{{title}}</view>
+			<!-- 小标题 -->
+			<view class="title">
+				<view class="index">{{currentIndex+1}}</view>
+				<view class="title-text">{{pkg.myslice(questionList[currentIndex].question_txt)}}</view>
+			</view>
+
+			<!-- <view class="detail" wx:if="{{questionList[currentIndex].ques_pic_path != ''}}">台湾 高山族《砍树歌》</view> -->
+			<!-- 谱子xml -->
+			<!-- <view class="puli" wx:if="{{questionList[currentIndex].ques_xml_path != ''}}"></view> -->
+
+			<!-- 图片 -->
+			<view class="puli" wx:if="{{questionList[currentIndex].ques_pic_path != ''}}">
+				<image src="{{base}}{{questionList[currentIndex].ques_pic_path}}" mode="widthFix" class="option-img"></image>
+			</view>
+
+			<!-- 选项 -->
+			<block wx:for="{{questionList[currentIndex].answer}}" wx:key="item" wx:for-item="oitem" wx:for-index="oindex">
+				<view style="margin-bottom: {{optionMargin}}vmin;" class="optionWrapper" data-index="{{pkg.upper(oindex)}}" bindtap="handleClick">
+					<view class="optionIndex {{mySelect[currentIndex]==pkg.upper(oindex)?'picked':''}} {{stateFlag==1?(pkg.upper(oindex)==answerList[currentIndex]?'true':''):''}} {{stateFlag==1?(pkg.upper(oindex)==mySelect[currentIndex]&&pkg.upper(oindex)!=answerList[currentIndex]?'wrong':''):''}}">
+						{{pkg.upper(oindex)}}
+					</view>
+					<view class="optionItem">
+						<image class="option-img" src="{{base}}{{oitem.pic_path}}" mode="widthFix"></image>
+						<!-- <image class="option-img" src="{{base}}{{oitem.xml_path}}" mode="widthFix"></image> -->
+						<view style="font-size:14px; margin-left: 20px;">{{oitem.txt}}</view>
+					</view>
+				</view>
+			</block>
+		</block>
+	</view>
+</view>
+
+
+<!-- 成绩界面 -->
+<view wx:if="{{stateFlag>=2}}" class="layout">
+	<view class="nav">
+		<text wx:if="{{stateFlag==3}}" class="cuIcon-back lg myicon navback" bindtap="popstack"></text>
+	</view>
+	<view class="upTitle">
+		<view class="type">{{type}}</view>
+		<view class="score">您的得分是 <text class="scoreNum">{{myScore}}</text> 分！</view>
+	</view>
+	<view class="questions">
+		<block wx:for="{{answerList}}" wx:key="item">
+			<view class="circle wrong {{item==mySelect[index]?'true':''}}" bindtap="gotoDetail" data-index="{{index}}">
+				{{index+1}}
+			</view>
+		</block>
+	</view>
+	<view class="btnWrapper">
+		<view class="checkBtn" bindtap="gotoHomework" data-flag="{{finishedLessonFlag}}">{{finishedLessonFlag?'查看作业':'继续答题'}}</view>
+	</view>
+</view>
+
+
+<!-- list实现 -->
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showListStatus}}">
+	<view class="listHead">
+		<view class="listTitle">{{type}}</view>
+		<view id="back" bindtap="hideList">×</view>
+	</view>
+
+	<view>
+		<i-cell-group>
+			<block wx:for="{{totalNumber}}" wx:key="index">
+				<view class="cell" bindtap="chooseQuestion" data-index="{{index}}">
+					<view class="cell-index">{{index+1}}</view>
+					<view class="cell-state" style="color:{{mySelect[index]!=-1?'gray':'7C7C7C'}}">{{mySelect[index]!=-1?'已作答':'未作答'}}</view>
+					<view class="tmp"></view>
+				</view>
+				<view class="boundary"></view>
+			</block>
+		</i-cell-group>
+	</view>
+</view>

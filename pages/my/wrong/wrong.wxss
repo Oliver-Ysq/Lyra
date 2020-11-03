@@ -1,0 +1,20 @@
+/* pages/my/wrong/wrong.wxss */
+
+.pic {
+  height: 54rpx;
+  width: 54rpx;
+}
+
+.title {
+  color: #4e4a80;
+  font-size: 28rpx;
+}
+
+.detail {
+  color: #9e9ac5;
+  font-size: 20rpx;
+}
+
+.coloR {
+  color: rgb(91, 99, 168);
+}

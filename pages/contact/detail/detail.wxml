@@ -1,0 +1,96 @@
+<view class="layer1">
+	<image src="{{detail.headSrc}}" style=" width:81rpx;height:81rpx;" mode="scaleToFill" border="0" class="originatorHead"></image>
+	<view class="originatorDetail">
+		<text decode="{{true}}" class="originatorName">{{detail.name}}</text>
+		<text decode="{{true}}" class="originatorTime">{{detail.time2}}</text>
+	</view>
+
+	<image src="/image/contact/star0.png" mode="scaleToFill" border="0" class="collectUser"></image>
+
+</view>
+<view class="layer2">
+	<view decode="{{true}}" class="quetionTitle">{{detail.title}}</view>
+	<view decode="{{true}}" class="quetionText">{{detail.content}}</view>
+</view>
+<view class="layer3" wx:if="{{urls.length>0}}">
+	<view class="pictureLayer1">
+		<image wx:if="{{urls.length>0}}" bindtap="tap" id="1" src="{{urls2[0]}}" mode="aspectFill" border="0" class="picture1"></image>
+		<image wx:if="{{urls.length>1}}" bindtap="tap" id="2" src="{{urls2[1]}}" mode="aspectFill" border="0" class="picture1"></image>
+		<image wx:if="{{urls.length>2}}" bindtap="tap" id="3" src="{{urls2[2]}}" mode="aspectFill" border="0" class="picture1"></image>
+	</view>
+	<view class="pictureLayer2" wx:if="{{urls.length>3}}">
+		<image wx:if="{{urls.length>3}}" bindtap="tap" id="4" src="{{urls2[3]}}" mode="aspectFill" border="0" class="picture4"></image>
+		<image wx:if="{{urls.length>4}}" bindtap="tap" id="5" src="{{urls2[4]}}" mode="aspectFill" border="0" class="picture5"></image>
+		<image wx:if="{{urls.length>5}}" bindtap="tap" id="6" src="{{urls2[5]}}" mode="aspectFill" border="0" class="picture6"></image>
+	</view>
+</view>
+<view class="operateQuetion">
+	<text decode="{{true}}" class="answerNumber">{{detail.commentNum}}</text>
+	<image src="/image/contact/comment.png" mode="scaleToFill" border="0" class="answerQuetion"></image>
+	<text decode="{{true}}" class="collectNumber">12</text>
+	<image src="/image/contact/star0.png" mode="scaleToFill" border="0" class="collectQuetion"></image>
+
+
+</view>
+
+<view wx:for="{{commentInfo}}" wx:for-index="bindex" wx:key="id">
+	<view class="layer5" data-id="{{item.id}}" data-replyname="{{item.name}}" bindtap="commentComment">
+		<view class="answerFill"></view>
+		<text wx:if="{{bindex==0}}" decode="{{true}}" class="layer4">所有回答</text>
+		<view class='view-box-btn'>
+			<view class="answerInfo">
+				<image src="{{item.headSrc}}" style=" width:63rpx;height:63rpx;" mode="scaleToFill" border="0" class="answerHead"></image>
+				<view class="answerDetail">
+					<text decode="{{true}}" class="answerName">{{item.name}}</text>
+					<text>\n</text>
+					<text decode="{{true}}" class="answerText">{{item.content}}</text>
+					<view class="imgBox">
+						<view wx:for="{{item.imgList}}" wx:key="item" wx:for-index="cindex" wx:for-item="cell">
+							<image data-id="{{bindex}}" data-index="{{cindex}}" src="{{cell}}" bindtap="preview2" mode="aspectFill" border="0" class="picture1"></image>
+						</view>
+					</view>
+
+					<view class="otherMessage">
+						<text decode="{{true}}" class="answerTime">{{item.time}}</text>
+						<image src="/image/contact/comment1.png" mode="scaleToFill" border="0" class="answerComment"></image>
+						<text decode="{{true}}" class="answerCommentNumber">{{item.comments.length}}</text>
+						<view class="answerCommentNumber">
+						</view>
+						<image src="/image/contact/heart.png" mode="scaleToFill" border="0" class="answerLike"></image>
+						<text decode="{{true}}" class="answerLikeNumber">{{item.likeNum}}</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="answerCommentDetail">
+			<view wx:for="{{item.comments}}" wx:key="id" wx:for-item="cell" wx:for-index="cindex">
+				<view catchtap="commentofComment" class="commentBox" data-fatherIndex="{{bindex}}" data-sonIndex="{{cindex}}">
+					<text decode="{{true}}" class="commentSender">{{cell.name}} 回复 {{cell.replyName}}：</text>
+					<text decode="{{true}}" class="commentTime" >{{cell.time}}</text>
+					<text decode="{{true}}" class="commentDetail">{{cell.content}}\n</text>
+					<!--text decode="{{true}}" class="commentDetail">\n</text-->
+					<view class="imgBox" wx-if="cell.imgList.length!=0">
+						<view wx:for="{{cell.imgList}}" wx:for-index="cindex" wx:for-item="dell">
+
+							<image data-id="{{bindex}}" data-index="{{cindex}}" src="{{dell}}" bindtap="preview3" mode="aspectFill" border="0" class="picture2"></image>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+<view style="width:100%;height:120rpx;clear:both;background-color:#F1F1F1;">\n</view>
+
+<view style="width:100%;height:120rpx;clear:both;background-color:#F1F1F1;">\n</view>
+<view wx:if="{{imgToSend.length>0}}" class="preview">
+	<image wx:if="{{imgToSend.length>0}}" bindtap="preview" bindlongpress='deleteImg' id="1" src="{{urls3[0]}}" mode="aspectFill" border="0" class="img"></image>
+	<image wx:if="{{imgToSend.length>1}}" bindtap="preview" bindlongpress='deleteImg' id="2" src="{{urls3[1]}}" mode="aspectFill" border="0" class="img"></image>
+	<image wx:if="{{imgToSend.length>2}}" bindtap="preview" bindlongpress='deleteImg' id="3" src="{{urls3[2]}}" mode="aspectFill" border="0" class="img"></image>
+</view>
+<view class="input">
+	<image wx:if="{{redPoint==true}}" src="/image/contact/redPoint.png" style="position:absolute;width:50rpx;height:50rpx;margin-top:10rpx;margin-left:42rpx"></image>
+	<image src="/image/contact/picture.png" bindtap="tap2" style=" width:61rpx;height:51rpx;" mode="scaleToFill" border="0" class="inputImage"></image>
+	<input focus="{{inputShowed}}" placeholder="{{replyTip}}" value="{{inputText}}" bindblur="setIdBack" bindfocus="setReplyTip" bindinput="input" class="inputText" contenteditable="true" auto-height="true"></input>
+	<text bindtap="submit" decode="{{true}}" class="inputSend">回答</text>
+</view>

@@ -1,0 +1,216 @@
+/* components/musicScore/musicScore.wxss */
+/**************/
+.image1-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 34rpx;
+height: 21rpx;
+}
+.imager1-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 34rpx;
+height: 21rpx;
+}
+.image2-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+.imager2-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+.image4-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+.imager4-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+.image8-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 48rpx;
+height: 90rpx;
+}
+.imager8-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 29rpx;
+height: 80rpx;
+}
+.image16-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 48rpx;
+height: 90rpx;
+}
+.imager16-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 27rpx;
+height: 95rpx;
+}
+.image32-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 48rpx;
+height: 90rpx;
+}
+.imager32-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 27rpx;
+height: 98rpx;
+}
+.imagebing-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+.imagerbing-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 28rpx;
+height: 82rpx;
+}
+/******************************/
+.imagedot-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 10rpx;
+height: 10rpx;
+z-index: 100;
+}
+.imagesign-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 20rpx;
+height: 40rpx;
+z-index: 100;
+}
+.imagetr-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 40rpx;
+height: 40rpx;
+z-index: 100;
+}
+.imagelian-style{
+position: absolute;
+bottom: 480rpx;
+right: 200rpx;
+width: 82rpx;
+height: 30rpx;
+z-index: 100;
+}
+
+
+
+.imagex1-style{
+  position: absolute;
+  width: 28rpx;
+  height: 12rpx;
+  z-index: 100;
+}
+.imagex2-style{
+  position: absolute;
+  width: 28rpx;
+  height: 12rpx;
+  z-index: 100;
+}
+.imagex4-style{
+  position: absolute;
+  width: 17rpx;
+  height: 52rpx;
+  z-index: 100;
+}
+.imagex8-style{
+  position: absolute;
+  width: 23rpx;
+  height: 40rpx;
+  z-index: 100;
+}
+.imagex16-style{
+  position: absolute;
+  width: 31rpx;
+  height: 60rpx;
+  z-index: 100;
+}
+.imagex32-style{
+  position: absolute;
+  width: 37rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+/**********************alter***/
+.sheng{
+    position: absolute;
+      width: 16rpx;
+      height: 48rpx;
+      z-index: 0;
+    }
+.csheng {
+  position: absolute;
+      width: 20rpx;
+      height: 20rpx;
+      z-index: 0;
+    }
+.jiang{
+position: absolute;
+      width: 14rpx;
+      height: 48rpx;
+      z-index: 0;
+    }
+   .cjiang{
+     position: absolute;
+      width: 26rpx;
+      height: 48rpx;
+      z-index: 0;
+    }
+.huan {
+  position: absolute;
+      width: 12rpx;
+      height: 48rpx;
+      z-index: 0;
+}
+.imagedot{
+  position: absolute;
+      width: 8rpx;
+      height: 8rpx;
+      z-index: 0;
+}
+.imageddot{
+  position: absolute;
+      width: 18rpx;
+      height: 8rpx;
+      z-index: 0;
+}

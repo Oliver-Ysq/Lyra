@@ -1,0 +1,39 @@
+//*********************判断几分音符函数 */
+var noteNumber = {
+
+  toNote: function (divisions, duration) {
+    //console.log(divisions / duration * 4)
+    return parseInt(divisions) / duration * 4
+  },
+
+  space:function(id){
+    return 10*id
+  },
+  getfirstY:function(hang,interval){
+    var y=hang*interval
+    return y
+  },
+  getNum:function(height,rpx){
+    var num=Math.ceil((height-160*rpx)/120*rpx)+1
+    //console.log('rpx:'+rpx)
+    //console.log('height:'+height+'  num:'+num)
+    var list=[]
+    var i=0
+    for(i=0;i<num;i++){
+      list[i]=i
+    }
+    return list
+  },
+  getTop:function(i,rpx){
+    return 20*rpx+i*120*rpx
+  }
+
+}
+module.exports = {
+
+  toNote: noteNumber.toNote,
+  space: noteNumber.space,
+  getfirstY:noteNumber.getfirstY,
+  getNum:noteNumber.getNum,
+  getTop:noteNumber.getTop
+}

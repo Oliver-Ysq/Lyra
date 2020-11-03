@@ -1,0 +1,205 @@
+<wxs module="noteNumber" src="./toNote.wxs"></wxs>
+<progress  wx:if="{{!progressMusicFlag}}" percent="98" active="true"activeColor="#3654fd" stroke-width="3"/>
+
+<!-- 遮盖层 -->
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}" bindtap="hideRule">
+  <view class='ruleZhezhaoContent'>
+    教学内容
+  </view>
+</view>
+
+
+ 
+<view style="position: relative;" background>
+  <!-- 五线谱 -->
+  <!--view style="background: #B4AFEE30; height:{{scroll_height}}px; width:100vw"-->
+  <!--scroll-top="{{noteNumber.getfirstY(lastLine,interval)}}"-->
+  <view wx:if="{{onloadFlag}}" class="bg-white flex-sub  justify-center"style="display:flex;height:{{white_height}}px;justify-content:center;align-items: center;">
+    <image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class="gif-white response " style="position:absolute;height:340rpx;"></image>
+    </view>
+  <scroll-view  scroll-y="{{firstScroll}}" style="height:{{scroll_height}}px;background: #B4AFEE30" scroll-with-animation="false" >
+  <canvas canvas-id="staticCanvas"wx:if="{{!onloadFlag&&!showListStatus}}" style="width:{{width}}px;height:{{height}}px;margin: 20rpx 20rpx ; border:1px solid transparent;" disable-scroll='{{false}}'>
+    <canvas canvas-id="myCanvas"wx:if="{{!onloadFlag&&!showListStatus}}" style="width:{{width}}px;height:{{height}}px;margin: 0rpx 0rpx ; border:0px solid transparent;" disable-scroll='{{false}}'>
+      <canvas canvas-id="selectCanvas"wx:if="{{!onloadFlag&&!showListStatus}}" style="width:{{width}}px;height:{{height}}px;margin: 0rpx 0rpx ; border:0px solid transparent;position:relative" disable-scroll='{{false}}' >
+        <canvas canvas-id="firstCanvas"wx:if="{{!onloadFlag&&!showListStatus}}" style="width:{{width}}px;height:300rpx;margin: 0rpx 0rpx ; border:0px solid transparent" disable-scroll='{{false}}'>
+          <block wx:for="{{noteNumber.getNum(height,rpx)}}"  style="margin:0rpx 0rpx" wx:key="item">
+            <view id='toclick' style="width:{{width}}px;height:240rpx;top:{{noteNumber.getTop(item,rpx)}}px" bindtap="canvasTap"></view>
+          </block>
+        </canvas>
+      </canvas>
+    
+    </canvas>
+  </canvas>
+    <!--音符-->
+    <block wx:for="{{answerPart.measure}}" wx:for-item="measureitem" wx:for-index='measureid' wx:key="item">
+      <!--image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber' wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="image{{item.imageName}}-style" src="/image/hear/{{item.imageName}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+        bindtap="selectTap" style="top:{{item.y}}px;left:{{item.x}}px;" z-index="0">
+      </image-->
+      <!--升降-->
+      <!--image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber' wx:if="{{item.alterImage!='none'&&item.alterImage!=null}}"wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="{{item.alterImage}}" src="/image/hear/{{item.alterImage}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+         style="top:{{item.altery}}px;left:{{item.alterx}}px;" z-index="0">
+      </image-->
+      <!--附点-->
+      <!--image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber'wx:if="{{item.dotImage!='none'&&item.dotImage!=null}}"wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="image{{item.dotImage}}" src="/image/hear/{{item.dotImage}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+         style="top:{{item.doty}}px;left:{{item.dotx}}px;" z-index="0">
+      </image-->
+    </block>
+  </scroll-view>
+<!--模态框-->
+<view class="cu-modal {{modalName!=null?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">确定切换题目？</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close"style="color:#ff7498"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      切换题目会清空你之前的作答。
+    </view>
+    <view class="cu-bar bg-white">
+      <view class="action margin-0 flex-sub  solid-left"data-name='cancel'data-modal="{{modalName}}" bindtap="hideModal">取消</view>
+      <view class="action margin-0 flex-sub  solid-left "style="color:#ff7498"data-name='ok'data-modal="{{modalName}}"  bindtap="hideModal">确定</view>
+    </view>
+  </view>
+</view>
+
+  <!-- 按钮部分 -->
+  <view id="buttons">
+    <!-- 第一行：音符 -->
+    <view id="notes">
+      <view wx:for="{{firstLineNotes}}" bindtap="handleItemTap" data-id="{{item.id}}" wx:key="item">
+        <image style="width:{{item.width}}rpx; height:{{item.height}}rpx; position: absolute; left:50%; top:50%; margin-left:{{item.marginLeft}}rpx; margin-top:{{item.marginTop}}rpx;" mode="aspectFit" src="/image/hear/{{item.name}}{{activeNotes==item.name?'s':''}}.png"></image>
+      </view>
+    </view>
+    <!-- 折叠内容——dots -->
+    <view id="dots" wx:if="{{dotsShow}}">
+      <view wx:for="{{dotsList}}" bindtap="handleDotsItemTap" data-name="{{item.name}}" wx:key="item">
+        <image style="width:{{item.width}}rpx; height:{{item.height}}rpx; position:absolute; left:50%; top:50%; margin-left:{{item.marginLeft}}rpx; margin-right:{{marginRight}}rpx;" mode="aspectFit" src="/image/hear/{{item.name}}{{activeSymbol===item.name?'s':''}}.png">
+        </image>
+      </view>
+    </view>
+    <!-- 折叠内容——升号 -->
+    <view id="sheng" wx:if="{{shengShow}}">
+
+      <view wx:for="{{shengsList}}" bindtap="handleShengsItemTap" data-name="{{item.name}}" wx:key="item">
+        <image style="width:{{item.width}}rpx; height:{{item.height}}rpx; position:absolute; left:50%; top:50%; margin-left:{{item.marginLeft}}rpx; margin-top:{{item.marginTop}}rpx;" mode="aspectFit" src="/image/hear/{{item.name}}{{activeSymbol===item.name?'s':''}}.png">
+        </image>
+      </view>
+
+    </view>
+    <!-- 折叠内容——休止符 -->
+
+    <view id="xiu" wx:if="{{xiuShow}}">
+      <view wx:for="{{xiusList}}" bindtap="handleXiusItemTap" data-name="{{item.name}}" data-id="{{item.id}}" wx:key="item">
+        <image style="width:{{item.width}}rpx; height:{{item.height}}rpx; position:absolute; left:50%; top:50%; margin-left:{{item.marginLeft}}rpx; margin-top:{{item.marginTop}}rpx;" mode="aspectFit" src="/image/hear/x{{item.name}}{{activeSymbol===item.name?'s':''}}.png">
+        </image>
+      </view>
+    </view>
+
+    <view id="notesBox">
+      <!-- dots -->
+      <view bindtap="handleDotsTap">
+        <image style="width:16rpx; height:16rpx;  position: absolute; left: 50%; top: 50%; margin-left: -8rpx; margin-top: -8rpx;" mode="aspectFit" src="/image/hear/{{dotsFlag==1?'null':'dot'}}.png"></image>
+        <view class="down-arrow"></view>
+      </view>
+      <!-- 升号 -->
+      <view bindtap="handleShengTap">
+        <image style="width:16rpx; height:48rpx;  position: absolute; left: 50%; top: 50%; margin-left: -8rpx; margin-top: -24rpx;" mode="aspectFit" src="/image/hear/{{shengFlag==1?'null':'sheng'}}.png"></image>
+        <view class="down-arrow"></view>
+      </view>
+      <!-- 休止符 -->
+      <view bindtap="handleXiuTap">
+        <image style="width:16rpx; height:48rpx;  position: absolute; left: 50%; top: 50%; margin-left: -8rpx; margin-top: -24rpx;" mode="aspectFit" src="/image/hear/{{xiuFlag==1?'null':'x4'}}.png"></image>
+        <view class="down-arrow"></view>
+      </view>
+      <!-- 清除 -->
+      <view bindtap="clean">
+        <image style="width:80rpx; height:80rpx;  position: absolute; left: 50%; top: 50%; margin-left: -40rpx; margin-top: -40rpx; transform:rotate(90deg)" mode="aspectFit" src="/image/hear/clean.png"></image>
+      </view>
+      <!-- 小节 -->
+      <view bindtap="addBarLine" style="height:100rpx; line-height:100rpx; text-align: center; font-size: 32rpx">小节</view>
+      <!-- 提交 -->
+      <view id="upload" bindtap="handleUploadTap">提交</view>
+    </view>
+    <!-- 钢琴 -->
+    <view class="scroll_box">
+      <scroll-view scroll-x scroll-left="{{1064/rpx}}">
+        <!-- 白键 -->
+        <view wx:for="{{pianoName}}" wx:for-index='pianoId' wx:key="item" class="white" style="width:{{38/rpx}}px; border-right: {{1/rpx}}px solid #f0edff;" data-selectnote="{{pianoName[pianoId]}}" bindtap="addNotesW">
+          <view style="position:absolute; bottom:20rpx; left:{{20/rpx-8}}px; font-size:{{16/rpx}}px;">{{item.name}}</view>
+        </view>
+        <!-- 黑键 -->
+        <view wx:for="{{pianoPosition}}"wx:for-index='Id' wx:key="item" class="black" style="left:{{(item.position*76-19)/(2*rpx)}}px; top:0; width:{{19/rpx}}px;"bindtap="addNotesW"data-selectnote="{{pianoPosition[Id]}}"></view>
+
+      </scroll-view>
+    </view>
+
+  </view>
+
+  <!-- 底部tabbar -->
+  <view id="tabbar">
+    <image mode="aspectFit" src="/image/sing/yincha.png" bindtap="yincha"></image>
+    <image mode="aspectFit" src="/image/sing/last.png" bindtap="handleLastTap"></image>
+    <view id="bookBox" class="{{lists[activeMusic].added==1?'bg':''}}" bindtap="handleNotesTap">
+      <image id="book" mode="aspectFit" src="/image/sing/notes.png"></image>
+    </view>
+    <image mode="aspectFit" src="/image/sing/next.png" bindtap="handleNextTap"></image>
+    <image mode="aspectFit" id="list" src="/image/sing/music_list.png" bindtap="showList"></image>
+  </view>
+
+  <!-- 助教 -->
+  <view id="zhushou" bindtap="handleAssTap">
+    <image id="assistant" src="{{assistantImage[assFlag]}}"></image>
+  </view>
+  <!-- 进度条部分 -->
+  <view class="dialog-noBorder" style="{{showBoard==0?'':'height: 200rpx'}}">
+    <view wx:if="{{showBoard}}" class="comment">{{comment}}</view>
+    <!--image src="/image/hear/reset.png" class="reset" mode="aspectFit"></image-->
+    <view class="cuIcon-{{playFlag?'stop':'playfill'}} lg"style="color:#3654FD;width:50rpx!important;height:50rpx;position: absolute;left: 5%;bottom:5rpx"bindtap='handlePlay'></view>
+    <view class="progress-item">
+      <i-progress percent="{{percent}}" hide-info i-class="progress" stroke-width="6"bindtouchmove="setTouchMove"></i-progress>
+    </view>
+    <!-- 箭头 -->
+    <view class="arrow{{arrow}}" bindtap="handleArrowTap" wx:if="{{arrowFlag}}"></view>
+  </view>
+  <!-- 提交面板 -->
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{uploadStatus}}">
+    <view style="position:relative; height:100%; width:100%;">
+
+      <view class="uploadTop">
+        <text style="position:absolute; left: 20rpx; font-size: 26rpx">正确答案</text>
+        <text style="position:absolute; right:0; font-size: 26rpx">得分</text>
+      </view>
+      <text class="score">{{activeScore}}</text>
+      <progress percent="98" active="true" hidden="{{progressFlag}}"activeColor="#ff7498" stroke-width="3"/>
+      <scroll-view scroll-y="true" style="height:268rpx;">
+      <musicScore part="{{part}}"id="musicScore">
+        </musicScore>
+      </scroll-view>
+      <view id="uploadButtons">
+        <view class="uploadButton" bindtap="hideUpload" data-id='0'>重做</view>
+        <view class="uploadButton" bindtap="hideUpload" data-id='1'>订正</view>
+      </view>
+    </view>
+  </view>
+  <!-- list面板 -->
+  <view animation="{{animationData}}" class="commodity" wx:if="{{showListStatus}}">
+    <view style="display:flex; flex-direction:row-reverse">
+      <view id="back" bindtap="hideList">×</view>
+    </view>
+
+    <view>
+      <i-cell-group>
+        <block wx:for="{{lists}}" wx:key="index">
+          <i-cell value="{{item.done==1?'历史成绩：'+item.highScore :''}}"bindtap="chooseQuestion"data-id="{{index}}">
+            <view style="float: left; margin-left:10rpx; font-size:16px;height:100%; text-align: center;color:{{item.done == 1? '#8A8A8A' : '#333333'}}">{{index+1}}</view>
+            <view style="float:left; padding-left: 10vw;">{{item.name}}</view>
+          </i-cell>
+        </block>
+      </i-cell-group>
+    </view>
+
+  </view>
+
+</view>

@@ -1,0 +1,83 @@
+.ctn {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  background: white;
+}
+
+.normalSize {
+  font-size: 28rpx;
+}
+
+.bigSize {
+  font-size: 30rpx;
+}
+
+.color_0 {
+  color: rgb(255, 111, 150);
+}
+
+.color_1 {
+  color: rgb(7, 123, 217);
+}
+
+.color_2 {
+  color: rgb(241, 143, 28);
+}
+
+.swiper {
+  height: calc(100% - 90rpx);
+  overflow: scroll;
+}
+
+.cardWrapper {
+  box-sizing: border-box;
+  height: 160rpx;
+  padding: 20rpx 40rpx 0 40rpx;
+  position: relative;
+}
+
+.who1 {
+  font-size: 28rpx;
+}
+
+.content1 {
+  overflow: hidden;
+  word-wrap: break-word;
+  font-size: 22rpx;
+  color: #8E8E93;
+  height: 76rpx;
+  line-height: 38rpx;
+  width: 534rpx;
+  margin-top: 8rpx;
+}
+
+.cardimg1 {
+  height: 120rpx;
+  width: 120rpx;
+  border-radius: 10rpx;
+  position: absolute;
+  bottom: 20rpx;
+  right: 32rpx;
+}
+
+.comment {
+  margin: 0rpx 32rpx 10rpx 32rpx;
+  height: 94rpx;
+  overflow: hidden;
+  word-wrap: break-word;
+  text-overflow: clip;
+  background: #F2F2F2;
+  border-radius: 10rpx;
+  line-height: 40rpx;
+  font-size: 22rpx;
+  padding: 14rpx 20rpx;
+}
+
+.money{
+  font-size: 28rpx;
+  color: #6F66CF;
+  position: absolute;
+  right: 180rpx;
+  top: 28rpx;
+}

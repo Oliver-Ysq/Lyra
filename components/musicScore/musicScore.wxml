@@ -1,0 +1,16 @@
+<!--components/musicScore/musicScore.wxml-->
+ <canvas canvas-id="myCanvas" style="width:{{width}}px;height:{{height}}px;margin: 20rpx 20rpx ; border:1px solid transparent;" disable-scroll='{{false}}' />
+    <!--音符-->
+    <block wx:for="{{answerPart.measure}}" wx:for-item="measureitem" wx:for-index='measureid' wx:key="item">
+      <image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber' wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="image{{item.imageName}}-style" src="/image/hear/{{item.imageName}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+        bindtap="selectTap" style="top:{{item.y}}px;left:{{item.x}}px;" z-index="0">
+      </image>
+      <!--升降-->
+      <image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber' wx:if="{{item.alterImage!='none'&&item.alterImage!=null}}"wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="{{item.alterImage}}" src="/image/hear/{{item.alterImage}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+         style="top:{{item.altery}}px;left:{{item.alterx}}px;" z-index="0">
+      </image>
+      <!--附点-->
+      <image wx:for="{{answerPart.measure[measureid].note}}" wx:for-index='nownotenumber'wx:if="{{item.dotImage!='none'&&item.dotImage!=null}}"wx:key="id" data-nownotenumber="{{nownotenumber}}" data-nowmeasure="{{measureid}}" data-selectnote="{{item}}" class="image{{item.dotImage}}" src="/image/hear/{{item.dotImage}}{{(nowMeasure==measureid&&nownotenumber==nowNoteNumber)?'s':''}}.png"
+         style="top:{{item.doty}}px;left:{{item.dotx}}px;" z-index="0">
+      </image>
+    </block>

@@ -1,0 +1,210 @@
+.isRuleShow {
+  display: block;
+}
+
+.isRuleHide {
+  display: none;
+}
+
+.ruleZhezhao {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.contain {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 !important;
+  background: #F0EDFF;
+}
+
+.title {
+  top:0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: fixed;
+  z-index: 99999;
+}
+
+.titleSel {
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rpx 24rpx;
+  border-radius: 36rpx;
+}
+
+/* 提问页面 */
+
+.slot {
+  margin-left: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.slot image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 16rpx;
+}
+
+/* 音视频页面 */
+
+.sort {
+  height: 90rpx;
+  padding-right: 20rpx;
+  position: relative;
+}
+
+.hot {
+  right: 20rpx;
+}
+
+.new {
+  right: 164rpx;
+}
+
+.sortBtn {
+  font-size: 28rpx;
+  color: #5b63a8;
+  height: 52rpx;
+  width: 124rpx;
+  border-radius: 106rpx;
+  line-height: 52rpx;
+  text-align: center;
+  position: absolute;
+  top: 20rpx;
+}
+
+.active {
+  border: 1px solid #ff7498;
+  color: #ff7498;
+}
+
+.list {
+  padding: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.list .list-half {
+  width: 346rpx;
+  box-sizing: border-box;
+}
+
+.list-half .card {
+  background-color: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+  /* padding-bottom: 20rpx; */
+}
+
+.list-half image {
+  width: 346rpx;
+}
+
+.head {
+  padding: 20rpx;
+  font-size: 26rpx;
+}
+
+.info {
+  padding: 0 20rpx 20rpx 20rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info .name {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.info .like {
+  font-size: 22rpx;
+}
+
+.info .good {
+  width: 32rpx;
+  height: 32rpx;
+  margin-bottom: -4rpx;
+  margin-right: 8rpx;
+}
+
+.record {
+  width: 80rpx !important;
+  margin: 40rpx 133rpx 40rpx 133rpx;
+}
+
+.btnBox {
+  width: 112rpx;
+  height: 570rpx;
+  position: fixed;
+  /* left: 614rpx;
+  bottom: 24rpx; */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.btn {
+  opacity: 0;
+  height: 96rpx;
+  width: 96rpx;
+  margin: 8rpx;
+  border-radius: 50%;
+  visibility: hidden;
+  transition: all 0.5s;
+}
+
+.show {
+  opacity: 1;
+  visibility: visible;
+  transition: all 0.5s;
+}
+
+.hide {
+  height: 112rpx;
+}
+
+.hidebtn {
+  display: none;
+}
+
+.btnCtn {
+  height: 112rpx;
+  width: 112rpx;
+  border-radius: 50%;
+  background-image: -webkit-linear-gradient(top, #ffd27a 0%, #ffa43b 100%);
+  transition: all 0.5s;
+}
+
+.btnCtn image {
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 24rpx;
+  margin-top: 24rpx;
+}
+
+.roll {
+  transform: rotate(45deg);
+  transition: all 0.5s;
+}

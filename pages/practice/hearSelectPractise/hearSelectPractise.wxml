@@ -1,0 +1,42 @@
+<view class="ctn">
+	<view class="head">
+		<view class="titleBox">
+			<view class="numberWrapper">
+				<view class="number">{{activeQuestion}}</view>
+				<view class="countDown">{{count}}s</view>
+			</view>
+			<view class="title">
+				<text>{{questionList[activeQuestion-1].title}}</text>
+			</view>
+		</view>
+		<view class="progress-wrapper">
+			<view class="dialog-noBorder">
+				<view class="cuIcon-{{playFlag?'stop':'playfill'}} lg" style="color:#3654FD;width:50rpx!important;height:50rpx;position: absolute;left: 5%;bottom:5rpx" bindtap='handlePlay'></view>
+				<view class="progress-item">
+					<i-progress percent="{{percent}}" hide-info i-class="progress" stroke-width="6" bindtouchmove="setTouchMove"></i-progress>
+				</view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 选项 -->
+	<view class="main">
+		<view class="option {{click==index+1?'border':''}}" wx:for="{{questionList[activeQuestion-1].choices}}" bindtap="handleOptionsTap" data-id="{{index}}" wx:key="item">
+			<view class="letter{{click==index+1?'Active':''}}">{{alphabet[index]}}</view>
+			<view class="content">
+				<text>{{item}}</text>
+			</view>
+		</view>
+	</view>
+
+<!-- tabbar -->
+</view>
+<view id="tabbar">
+	<image mode="aspectFit" src="/image/sing/yincha.png" bindtap="yincha"></image>
+	<image mode="aspectFit" src="/image/sing/last.png" bindtap="handleLastTap"></image>
+	<view id="bookBox" class="{{lists[activeMusic].added==1?'bg':''}}" bindtap="handleNotesTap">
+		<image id="book" mode="aspectFit" src="/image/sing/notes.png"></image>
+	</view>
+	<image mode="aspectFit" src="/image/sing/next.png" bindtap="handleNextTap"></image>
+	<image mode="aspectFit" id="list" src="/image/sing/music_list.png" bindtap="showList"></image>
+</view>

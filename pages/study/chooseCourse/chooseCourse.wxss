@@ -1,0 +1,117 @@
+.productNav {
+  display: flex;
+  flex-direction: row;
+  font-family: "Microsoft YaHei";
+  background-color: #ffffff
+}
+
+.left {
+  width: 25%;
+  font-size: 30rpx;
+  background-color: white;
+  height: 100vh;
+  border: 1px solid #f0edff;
+}
+
+.left view {
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.type swiper {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.type swiper swiper-item {
+  overflow: scroll;
+}
+
+.selected {
+  background-color: white;
+  border-left: 2px solid #3654fd;
+  font-weight: bold;
+  color: #3654fd;
+}
+
+.normal {
+  color: #5b63a8;
+  background-color: white;
+}
+
+.right {
+  width: 75%;
+  margin: 0;
+  position: relative;
+}
+
+.cell {
+  box-sizing: border-box;
+  width: 100%;
+  height: 90rpx;
+  position: relative;
+  font-size: 26rpx;
+  padding: 0 36rpx;
+  line-height: 90rpx;
+  overflow: hidden;
+  color: #bbbbbb;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cell-hover{
+  box-sizing: border-box;
+  width: 100%;
+  height: 90rpx;
+  position: relative;
+  font-size: 26rpx;
+  padding: 0 36rpx;
+  line-height: 90rpx;
+  overflow: hidden;
+  color: #bbbbbb;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color:#f0edff50
+
+}
+.cell::after {
+  content: '';
+  position: absolute;
+  left: 3%;
+  top: auto;
+  bottom: 0;
+  right: auto;
+  height: 2rpx;
+  width: 94%;
+  background-color: #f0edff;
+}
+
+.scroll {
+  width: 100%;
+  height: 100%;
+}
+
+.subtitle {
+  font-size: 30rpx;
+  color: #000000;
+  margin-right: 20rpx;
+}
+
+.state {
+  font-size: 24rpx;
+  right: 24rpx;
+  position: absolute;
+}
+
+.score-board {
+  position: relative;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color:#3654FD10;
+  height: 48rpx;
+
+}

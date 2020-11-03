@@ -1,0 +1,42 @@
+<!--components/card/card.wxml-->
+<view class="main" hover-class="main-hover">
+
+<view class="head" bindtap="handleDetailTap">
+  <view class="title">
+    <view class="dot"></view>
+    {{info.title}}
+    <image wx:if="{{!info.done}}" src="/image/contact/coin.png" class="sign"></image>
+    <image wx:if="{{info.done}}" src="/image/contact/done.svg" class="sign"></image>
+    <text wx:if="{{!info.done}}" style="font-size: 18rpx; color:rgb(233,172,146);">  {{info.reward}}</text>
+    <text wx:if="{{info.done}}" style="font-weight: normal;font-size: 18rpx; color:rgb(52,142,37);">  已解决</text>
+  </view>
+
+  <view class="footer">
+    <view class="info">
+      <view class="name">{{info.name}}</view>
+      <view class="time">{{info.time}}</view>
+    </view>
+    <image class="profileImg" src="{{info.headSrc}}"></image>
+  </view>
+
+</view>
+
+<!-- 图片信息 -->
+<slot bindtap="handleDetailTap"></slot>
+
+
+<view class='line'></view>
+<view class="bottom">
+  <view class="icon">
+    <image class="star" src="/image/contact/star{{info.star}}.png" mode="aspectFit" bindtap="handleStarTap"></image>
+    <image class="share" src="/image/contact/share.png" mode="aspectFit"></image>
+  </view>
+  <view class="answer" bindtap="handleDetailTap">
+    <image src="/image/contact/comment.png" mode="aspectFit"></image>
+    <view class="number">{{info.commentNum}}</view>
+    <view class="text" >我要回答</view>
+    <image src="/image/contact/arrow.png" style="height: 48rpx; margin-top:14rpx" mode="aspectFit"></image>
+  </view>
+</view>
+
+</view>

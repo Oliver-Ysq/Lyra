@@ -1,0 +1,28 @@
+//*********************判断几分音符函数 */
+var noteNumber = {
+
+  toNote: function (divisions,duration) {
+    return divisions / duration * 4
+  },
+  getAvg:function(list){
+    var i=0
+    var sum=0
+    for(i=0;i<list.length;i++){
+      sum=sum+list[i].score
+    }
+    return sum/list.length
+  },
+  change:function(src){
+    console.log(src)
+    var str=src.replace("\\","/")
+    console.log(str)
+    return str
+  }
+
+}
+module.exports = {
+
+  toNote: noteNumber.toNote,
+  getAvg: noteNumber.getAvg,
+  change:noteNumber.change
+}

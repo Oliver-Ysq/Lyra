@@ -1,0 +1,94 @@
+.main {
+  width: 95%;
+  border-radius: 12rpx;
+  margin: 20rpx auto 0 auto;
+  background: white;
+  padding-top: 20rpx;
+}
+
+.head {
+  margin-left: 30rpx;
+  width: 100%;
+  position: relative;
+}
+
+.profileImg {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.info {
+  position: absolute;
+  left: 96rpx;
+  top: 10rpx;
+}
+
+.name {
+  font-size: 28rpx;
+  color: #333;
+  display: inline-block;
+  margin-right: 12rpx;
+}
+
+.time {
+  margin-top: 8rpx;
+  font-size: 18rpx;
+  color: #797979;
+}
+
+.level {
+  height: 24rpx;
+  display: inline-block;
+  font-size: 18rpx;
+  color: #ff7498;
+  border: 2rpx solid #ff7498;
+  padding: 0 10rpx;
+  border-radius: 28rpx;
+  line-height: 24rpx;
+}
+
+.content {
+  margin: 24rpx 30rpx;
+}
+
+.line {
+  margin: 0 auto;
+  width: 95%;
+  height: 2rpx;
+  background-color: rgb(240, 237, 255);
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: 12rpx 32rpx;
+  font-size: 22rpx;
+  line-height: 44rpx;
+
+}
+
+.footer input {
+  width: 500rpx !important;
+  height: 48rpx !important;
+  background: #eae8fc;
+  margin-right: 8rpx;
+  border-radius: 24rpx;
+  padding-left: 20rpx;
+}
+
+
+.footer image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 8rpx;
+  margin-top: 3rpx;
+  margin-right: 4rpx;
+}
+
+.placeholder {
+  font-size: 22rpx;
+  color: #9e9ac5;
+  padding-left: 20rpx;
+}

@@ -1,0 +1,73 @@
+<view style="display: flex; flex-direction: column; height: 100vh; background: white;">
+  <scroll-view scroll-x class="bg-white nav">
+    <view class="flex text-center">
+      <view class="cu-item flex-sub {{index==TabCur?'coloR cur':''}}" wx:for="{{title}}" wx:key="item" bindtap="tabSelect" data-id="{{index}}">
+        {{item}}
+      </view>
+    </view>
+  </scroll-view>
+  <view wx:if="{{TabCur==0}}" class="" style="flex: 1; margin-top: 12rpx">
+    <scroll-view scroll-y>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" 
+          wx:for="{{singList}}" 
+          wx:key="item" 
+          bindtouchstart="ListTouchStart" 
+          bindtouchmove="ListTouchMove" 
+          bindtouchend="ListTouchEnd"
+          bindtap="toSing"
+          data-index="0"
+          data-id="{{index}}"
+          data-target="move-box-{{index}}"
+        >
+          <view class="cu-avatar round lg" style="background: #A0AFFB;">
+            <image mode="aspectFit" class="pic" src="/image/choice/mic.png"></image>
+          </view>
+          <view class="content">
+            <view class="title">{{item.title}}</view>
+            <view class="detail"> {{item.detail}}</view>
+          </view>
+          <view class="action">
+            <view style="font-size: 26rpx;">{{item.score}}</view>
+          </view>
+          <view class="move">
+            <view class="bg-red" data-num="1" data-id="{{index}}" bindtap="deleteSing">删除</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:if="{{TabCur==1}}" class="" style="flex: 1; margin-top: 12rpx">
+    <scroll-view scroll-y>
+      <view class="cu-list menu-avatar">
+        <view 
+          class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}}" 
+          wx:for="{{hearList}}" 
+          wx:key="item" 
+          bindtouchstart="ListTouchStart" 
+          bindtouchmove="ListTouchMove" 
+          bindtouchend="ListTouchEnd" 
+          bindtap="toHear"
+          data-index="1"
+           data-id="{{index}}"
+          data-target="move-box-{{index}}"
+        >
+          <view class="cu-avatar round lg" style="background: #FFA9BE;">
+            <image mode="aspectFit" class="pic" src="/image/choice/earphone.png"></image>
+          </view>
+          <view class="content">
+            <view class="text-grey">{{item.title}}</view>
+            <view class="text-gray text-sm">{{item.detail}}</view>
+          </view>
+          <view class="action">
+            <view style="font-size: 26rpx;">{{item.score}}</view>
+          </view>
+          <view class="move">
+            <view class="bg-red" data-num="2" data-id="{{index}}" bindtap="deleteHear">删除</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+</view>

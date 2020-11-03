@@ -1,0 +1,29 @@
+//*********************判断几分音符函数 */
+var hearChoice = {
+
+  toPercent: function (num, total) {
+    return (Math.round(num / total * 10000) / 100.00 + "%"); // 小数点后两位百分比
+  },
+
+}
+
+function judge(singL, hearL, type, nth, stateL) {
+  if (type == 0) {
+    for (var i = 0; i < stateL.length; i++) {
+      if (singL[nth] == stateL[i]) return true
+    }
+    return false
+  } else if (type == 3) {
+    for (var i = 0; i < stateL.length; i++) {
+      if (hearL[nth] == stateL[i]) return true
+    }
+    return false
+  }
+
+}
+module.exports = {
+
+  toPercent: hearChoice.toPercent,
+  judge: judge
+
+}

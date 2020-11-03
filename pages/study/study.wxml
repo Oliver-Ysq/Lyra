@@ -1,0 +1,42 @@
+<view class="layout">
+	<view class="week">第{{week}}周</view>
+	<block wx:for="{{cardList}}" wx:key="item">
+		<!-- 视唱题 type：0 -->
+		<view wx:if="{{item[0]!='完成'&&item[6]==0}}" class="card card1" bindtap="goto" data-type="0" data-rank="{{item[5]}}" data-title="{{item[4]}}">
+			<text class="cuIcon-right lg arrow" style="color: #9A93EE"></text>
+			<view class="box">
+				<view class="courseName">{{item[4]}}</view>
+				<view class="teacher">{{item[2]}}</view>
+			</view>
+			<view class="term">{{item[3]}}季学期</view>
+			<view class="processWrapper">
+				<view class="process">课程进度： {{item[1]}}</view>
+				<view class="task">本周任务： {{item[0]}}</view>
+			</view>
+			<view class=" myPWrapper">
+				<view class="cu-progress round myP">
+					<view class="bg-blue" style="width:{{loading?item[7]:''}};"></view>
+				</view>
+			</view>
+
+		</view>
+		<!-- 练耳选择题 type：3 -->
+		<view wx:if="{{item[0]!='完成'&&item[6]==3}}" class="card card2" bindtap="goto" data-type="3" data-rank="{{item[5]}}" data-title="{{item[4]}}">
+			<text class="cuIcon-right lg arrow" style="color: #9A93EE"></text>
+			<view class="box">
+				<view class="courseName">{{item[4]}}</view>
+				<view class="teacher">{{item[2]}}</view>
+			</view>
+			<view class="term">{{item[3]}}学期</view>
+			<view class="processWrapper">
+				<view class="process">课程进度： {{item[1]}}</view>
+				<view class="task">本周任务： {{item[0]}}</view>
+			</view>
+			<view class=" myPWrapper">
+				<view class="cu-progress round myP">
+					<view class="bg-blue" style="width:{{loading?item[7]:''}};"></view>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>

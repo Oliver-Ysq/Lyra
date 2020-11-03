@@ -1,0 +1,473 @@
+#main {
+  background: yellow;
+}
+
+.progress {
+  position: fixed;
+  bottom: 534rpx;
+  z-index: 1000;
+}
+
+#buttons {
+  background: #f0edff;
+  border-radius: 30rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 544rpx;
+  box-shadow: 0px 2px 10px 10px #9E9AC550;
+}
+
+image {
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+#stop {
+  background: -webkit-linear-gradient(top, white, #F4F2FF);
+  border-radius: 50%;
+  height: 120rpx;
+  width: 120rpx;
+  float: left;
+  position: fixed;
+  bottom: 250rpx;
+  left: 80rpx;
+  box-shadow: 2px 4px 5px 3px #B4AFEE66
+}
+
+#upload {
+  background: -webkit-linear-gradient(top, white, #F4F2FF);
+  border-radius: 50%;
+  height: 120rpx;
+  width: 120rpx;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  float: left;
+  position: fixed;
+  bottom: 252rpx;
+  right: 80rpx;
+  box-shadow: 2px 4px 5px 3px #B4AFEE66
+}
+
+#record {
+  background: -webkit-linear-gradient(top, white, #F4F2FF);
+  border-radius: 50%;
+  height: 160rpx;
+  width: 160rpx;
+  padding-top: 32rpx;
+  padding-left: 32rpx;
+  position: fixed;
+  bottom: 234rpx;
+  left: 292rpx;
+  box-shadow: 2px 4px 5px 3px #B4AFEE66
+}
+
+/*注意在这里添加了音频已录制的表示，如果要调整录制音频图片的位置记得调一下这里的参数*/
+#hasRecord {
+  content: "";
+  position: absolute;
+  left: 38%;
+  bottom: 39%;
+  width: 24%;
+  height: 38%;
+  background: #3654FD;
+  border-radius: 30rpx;
+
+}
+
+.quesNumber {
+  font-size: 30rpx;
+  color: #5B63A8;
+  position: absolute;
+  margin-left: 24rpx;
+  margin-top: 40rpx;
+}
+
+#tabbar {
+  height: 96rpx;
+  width: 100%;
+  background: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 9999;
+}
+
+.left {
+  flex: 1;
+}
+
+.right {
+  flex: 6;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.last {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #3654FD;
+  font-size: 28rpx;
+}
+
+.next {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 28rpx;
+  background: rgba(54, 84, 253, .4);
+}
+
+.left-arrow {
+  color: #3654FD;
+  font-size: 32rpx;
+  position: absolute;
+  top: 24rpx;
+  left: 16rpx;
+  font-weight: bold;
+}
+
+.right-arrow {
+  color: white;
+  font-size: 32rpx;
+  position: absolute;
+  top: 24rpx;
+  right: 16rpx;
+  font-weight: bold;
+}
+
+.bg {
+  border-radius: 60rpx;
+  background: rgba(255, 243, 204);
+}
+
+#assistant {
+  position: fixed;
+  bottom: 116rpx;
+  width: 132rpx;
+  height: 132rpx;
+}
+
+#zhushou {
+  position: fixed;
+  bottom: 96rpx;
+  right: 0;
+  background: #FFC85D;
+  border-radius: 50%;
+  height: 132rpx;
+  width: 132rpx;
+  z-index: 99999;
+  box-shadow: 1px 2px 4px 2px #D3592568
+}
+
+.redo {
+  position: fixed;
+  bottom: 140rpx;
+  width: 160rpx;
+  height: 60rpx;
+  left: 292rpx;
+  border-radius: 60rpx;
+  border: 1px solid #3654FD;
+  background: transparent;
+  color: #3654FD;
+  padding: 0rpx 20rpx;
+  font-size: 28rpx;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 60rpx;
+
+}
+
+/* 遮罩层样式 */
+
+.isRuleShow {
+  display: block;
+}
+
+.isRuleHide {
+  display: none;
+}
+
+.ruleZhezhao {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 9999999;
+}
+
+.ruleZhezhaoContent {
+  padding: 40rpx 0;
+  width: 60%;
+  background: #fff;
+  margin: 40% auto;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+}
+
+.upload {
+  width: 80%;
+  height: 70%;
+  background: #fff;
+  margin-top: 10%;
+  margin-bottom: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20rpx;
+  border: 2px dashed #9E9AC5;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.upload:before {
+  content: "";
+  position: absolute;
+  right: 10%;
+  bottom: -5%;
+  width: 0;
+  height: 0;
+  border-left: 36rpx solid transparent;
+  border-right: 36rpx solid transparent;
+  border-top: 60rpx dashed white;
+}
+
+.title {
+  font-size: 40rpx;
+}
+
+
+
+#imgContent {
+  display: flex;
+  flex-direction: row;
+}
+
+/* 遮罩层结束 */
+
+
+.commodity_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background: #fff;
+  height: 99%;
+  text-align: center;
+  /* padding-top: 100rpx; */
+}
+
+.listHead {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.listTitle {
+  font-size: 28rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+
+#back {
+  border-radius: 50%;
+  color: #4c69ff;
+  font-size: 64rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 0rpx;
+}
+
+/**************/
+.image1-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 34rpx;
+  height: 21rpx;
+  z-index: 100;
+}
+
+.imager1-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 34rpx;
+  height: 21rpx;
+  z-index: 100;
+}
+
+.image2-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 90rpx;
+  z-index: 100;
+}
+
+.imager2-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+.image4-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 90rpx;
+  z-index: 100;
+}
+
+.imager4-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+.image8-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 40rpx;
+  height: 90rpx;
+  z-index: 100;
+}
+
+.imager8-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+.image16-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 40rpx;
+  height: 90rpx;
+  z-index: 100;
+}
+
+.imager16-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+.image32-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 40rpx;
+  height: 90rpx;
+  z-index: 100;
+}
+
+.imager32-style {
+  position: absolute;
+  bottom: 480rpx;
+  right: 200rpx;
+  width: 26rpx;
+  height: 80rpx;
+  z-index: 100;
+}
+
+.standardWrapper {
+  width: 144rpx;
+  height: 72rpx;
+  background: white;
+  position: fixed;
+  bottom: 432rpx;
+  right: 0;
+  border-radius: 86rpx 0 0 86rpx;
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 26rpx;
+}
+
+.yincha {
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.cell {
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  width: 100vw;
+}
+
+.cell-index {
+  flex: 1;
+  text-align: right;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 32rpx;
+  color: black;
+}
+
+.cell-state {
+  flex: 5;
+  text-align: right;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding-right: 6rpx;
+  font-size: 24rpx;
+  color: #838383;
+}
+
+.cell-score {
+  flex: 2;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 24rpx;
+  color: #3654FD;
+}
+
+.boundary {
+  width: 670rpx;
+  margin-left: auto;
+  margin-right: auto;
+  height: 2rpx;
+  background: #F0EDFF;
+}

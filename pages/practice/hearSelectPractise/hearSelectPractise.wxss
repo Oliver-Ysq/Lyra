@@ -1,0 +1,188 @@
+.dialog-noBorder {
+  position: relative;
+  width: 550rpx;
+  height: 96rpx;
+  background: white;
+  /* bottom: 560rpx; */
+  /* left: 20rpx; */
+  border-radius: 20rpx;
+  /* position: fixed; */
+  border: 4rpx dashed #9e9ac5;
+  text-align: center;
+}
+
+.progress {
+  box-sizing: border-box;
+  position: absolute !important;
+  bottom: 33rpx;
+  right: 10%;
+  width: 380rpx !important;
+}
+
+.progress-item {}
+
+.ctn {
+  /* display: flex;
+  flex-direction: column; */
+  width: 100vw;
+  height: calc(100vh - 96rpx);
+  background: white;
+  overflow: auto;
+}
+
+.head {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.titleBox {
+  flex: 1;
+  padding: 30rpx;
+  display: flex;
+  padding-bottom: 0;
+}
+
+.numberWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.number {
+  width: 66rpx;
+  height: 66rpx;
+  border-radius: 50%;
+  line-height: 66rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #5B63A8;
+  background: #EAE8FC;
+}
+.countDown{
+  width: 66rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  text-align: center;
+  font-size: 28rpx;
+  margin-top: 12rpx;
+}
+.title {
+  flex: 5;
+  font-size: 32rpx;
+  padding: 36rpx;
+  padding-left: 0rpx;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.progress-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36rpx;
+  margin-bottom: 36rpx;
+}
+
+.main {
+
+  margin-top: 32rpx;
+  margin-bottom: 32rpx;
+  overflow: scroll;
+}
+
+#tabbar {
+  height: 96rpx;
+  width: 100%;
+  background: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 9999;
+}
+
+#tabbar>image {
+  height: 96rpx;
+}
+
+#book {
+  height: 96rpx;
+  box-sizing: border-box;
+  width: 96rpx;
+  padding-left: 12rpx;
+  padding-right: 12rpx;
+}
+
+#bookBox {
+  margin-left: 50rpx;
+  margin-right: 50rpx;
+}
+
+.option {
+  box-sizing: border-box;
+  width: 654rpx;
+  min-height: 120rpx;
+  border-radius: 146rpx;
+  font-size: 26rpx;
+  background: #F0EDFF;
+  padding: 16rpx;
+  margin-top: 32rpx;
+
+  margin-left: 50%;
+  transform: translateX(-327rpx);
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.letter {
+  width: 92rpx;
+  height: 92rpx;
+  background: rgb(218, 219, 255);
+  line-height: 92rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #5B63A8;
+  border-radius: 50%;
+}
+
+.letterActive {
+  width: 92rpx;
+  height: 92rpx;
+  background: rgb(170, 179, 255);
+  line-height: 92rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #5B63A8;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 454rpx;
+  padding-left: 40rpx;
+  white-space: normal;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.border {
+  border: 8rpx solid #D0CDEF;
+}

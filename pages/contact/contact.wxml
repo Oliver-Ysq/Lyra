@@ -1,0 +1,129 @@
+<view class="ruleZhezhao {{isRuleTrue?'isRuleShow':'isRuleHide'}}">
+  <view class='ruleZhezhaoContent'>
+    教学内容
+  </view>
+</view>
+
+<view class='contain'>
+  <view class="btnBox {{boxFlag==true?'':'hide'}}" style="left:{{initLeft+relativeMoveX}}rpx;bottom:{{initBottom-relativeMoveY}}rpx">
+    <!-- 发布问题 -->
+    <view class="btn {{boxFlag==true?'show':'hidebtn'}}" style="background-image: -webkit-linear-gradient(top, #81B1FE 0%, #5671FE 100%)" bindtap="goto" data-type="1">
+      <image mode="aspectFit" src="/image/contact/question0.png" style="width:112rpx; height: 112rpx; margin-left:0rpx; margin-top:-8rpx;"></image>
+    </view>
+    <!-- 发布状态 -->
+    <view class="btn {{boxFlag==true?'show':'hidebtn'}}" style="background-image: -webkit-linear-gradient(top, #D2FE86 0%, #06C169 100%)" bindtap="goto" data-type="2">
+      <image mode="aspectFit" src="/image/contact/chat.png" style="width:60rpx; height: 60rpx; margin-left:18rpx; margin-top:18rpx;"></image>
+    </view>
+    <!-- 发布音频 -->
+    <view class="btn {{boxFlag==true?'show':'hidebtn'}}" style="background-image: -webkit-linear-gradient(top, #FEB5F3 0%, #FF719F 100%)" bindtap="goto" data-type="3">
+      <image mode="aspectFit" src="/image/contact/audio0.png" style="width:48rpx; height: 48rpx; margin-left:24rpx; margin-top:24rpx;"></image>
+    </view>
+    <!-- 发布视频 -->
+    <view class="btn {{boxFlag==true?'show':'hidebtn'}}" style="background-image: -webkit-linear-gradient(top, #FF9696 0%, #FF2F48 100%)" bindtap="goto" data-type="4">
+      <image mode="aspectFit" src="/image/contact/video0.png" style="width:48rpx; height: 34rpx; margin-left:24rpx; margin-top:31rpx;"></image>
+    </view>
+
+    <view class="btnCtn {{boxFlag==true?'roll':''}}" bindtap="handleAddTap" >
+      <image mode="aspectFit" src="/image/contact/add.png"></image>
+    </view>
+
+  </view>
+
+  <view style="height: 100rpx;"></view>
+  <!--Tab布局-->
+  <view class='title'>
+    <view class='titleSel' bindtap='titleClick' data-idx='0' style="{{0 == currentIndex ? 'color: #359AF7; border: 2rpx solid #359AF7; transition: border 0.3s ease-in;' : 'color: rgb(158,154,197); border: 2rpx solid white; transition: border 0.3s ease-out;'}}">
+      <text>提问</text>
+    </view>
+
+    <!--view class='titleSel' bindtap='titleClick' data-idx='1' style="{{1 == currentIndex ? 'color: #D35925; border: 2rpx solid #D35925; transition: border 0.3s ease-in;' : 'color: rgb(158,154,197); border: 2rpx solid white; transition: border 0.3s ease-out;'}}">
+      <text>音视频</text>
+    </view>
+
+    <view class='titleSel' bindtap='titleClick' data-idx='2' style="{{2 == currentIndex ? 'color: #0C7E2D; border: 2rpx solid #0C7E2D; transition: border 0.3s ease-in;' : 'color: rgb(158,154,197); border: 2rpx solid white; transition: border 0.3s ease-out;'}}">
+      <text>状态</text>
+    </view-->
+
+  </view>
+
+  <!-- 提问 -->
+  <view style="display: {{ currentIndex==0? 'block' : 'none' }}; width: 100%; background: #F0EDFF; height:100vh; overflow: scroll; padding-bottom: 20rpx;">
+
+    <block wx:for="{{cardInfo}}" wx:key="item"  >
+      <card info="{{cardInfo[index]}}" bindStarTap="handleStarChange" bindtap="toDetail" data-index="{{index}}">
+        <view class="slot" data-id="{{item.id}}">
+          <image wx:for="{{cardInfo[index].imgList}}" wx:if="{{index<2}}" wx:key="item" src="{{item}}" mode="aspectFit" ></image>
+        </view>
+      </card>
+    </block>
+  </view>
+
+
+  <!-- 音视频 -->
+  <view style="display: {{ currentIndex==1? 'block' : 'none' }}; width: 100%; background: #F0EDFF; overflow: scroll;">
+    <view class="sort">
+      <view class="new sortBtn {{sortWay==0?'active':''}}" bindtap="handleNewTap">最新</view>
+      <view class="hot sortBtn {{sortWay==1?'active':''}}" bindtap="handleHotTap">最热</view>
+    </view>
+
+    <view class="list">
+
+      <view class='list-half'>
+        <view wx:for="{{mvList}}" wx:key="index" wx:if="{{index%2 == 0}}" class='card'>
+          <!-- 展示内容 -->
+          <!-- 1. 没有图片的录音==>展示默认图片 -->
+          <image mode="widthFix" wx:if="{{item.type==='record' & item.imgUrl===''}}" src="/image/contact/record.png" class="record"></image>
+          <!-- 2.有图片的录音 -->
+          <image mode="widthFix" src="{{item.imgUrl}}" wx:elif="{{item.type==='record' & item.imgUrl != '' }}"></image>
+          <!-- 3.视频 -->
+          <view wx:elif="{{item.type==='video'}}">我是一条视频</view>
+          <!-- 标题 -->
+          <view class="head">{{item.title}}</view>
+          <!-- 个人信息 -->
+          <view class="info">
+            <text class="name">{{item.name}}</text>
+            <view>
+              <image src="/image/contact/like{{item.hasLike}}.png" class="good"></image>
+              <text class="like" style="color:{{item.hasLike===1?'rgb(255, 116, 152)':'#333333'}}">{{item.like}}</text>
+            </view>
+          </view>
+
+        </view>
+      </view>
+
+      <view class='list-half'>
+        <view wx:for="{{mvList}}" wx:key="index" wx:if="{{index%2 != 0}}" class='card'>
+          <!-- 展示内容 -->
+          <!-- 1. 没有图片的录音 -->
+          <view wx:if="{{item.type==='record' & item.imgUrl===''}}">我是一条录音</view>
+          <!-- 2.有图片的录音 -->
+          <image mode="widthFix" src="{{item.imgUrl}}" wx:elif="{{item.type=='record' & item.imgUrl != '' }}"></image>
+          <!-- 3.视频 -->
+          <view wx:elif="{{item.type==='video'}}">我是一条视频</view>
+          <!-- 标题 -->
+          <view class="head">{{item.title}}</view>
+          <!-- 个人信息 -->
+          <view class="info">
+            <text class="name">{{item.name}}</text>
+            <view>
+              <image src="/image/contact/like{{item.hasLike}}.png" class="good"></image>
+              <text class="like" style="color:{{item.hasLike===1?'rgb(255, 116, 152)':'#333333'}}">{{item.like}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- 状态 -->
+  <view style="display: {{ currentIndex==2? 'block' : 'none' }}; width: 100%; background: #F0EDFF;height:100vh; overflow: scroll; padding-bottom: 20rpx;">
+    <block wx:for="{{commentList}}" wx:key="item">
+      <state info="{{commentList[index]}}" bindLikeTap="handleLikeChange">
+        <text style="font-size: 28rpx">{{item.content}}</text>
+      </state>
+    </block>
+  </view>
+<!-- <view style="width:100%;height:150rpx;clear:both;background-color:#F1F1F1;" >\n</view> -->
+</view>

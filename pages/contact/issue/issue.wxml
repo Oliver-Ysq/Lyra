@@ -1,0 +1,67 @@
+<view class="ctn">
+	
+		<input wx:if="{{type!==2}}" value="{{title}}" class="title" placeholder="写个标题吧" placeholder-class="plh"
+			bindfocus="hideList" bindblur="getTitle"></input>
+		<textarea class="text" value="{{content}}" placeholder="{{placeholder[type-1]}}" placeholder-class="plh"
+			maxlength="400" bindfocus="hideList" bindinput="getContent"></textarea>
+
+		<view class="addImg">
+			<view wx:for="{{imgList}}" class="pic" wx:key="item" style="padding:12rpx" wx:if="{{type===1||type===2}}">
+				<image id="{{index}}" src="{{item}}" mode="aspectFit" style="height:168rpx; width:168rpx;" bindtap="preview"
+					bindlongpress='deleteImg'></image>
+			</view>
+			<view class="pic" style="padding: 52rpx;" wx:if="{{(type===1||type===2)&&imgList.length<3}}" bindtap="chooseImg">
+				<image mode="aspectFit" style="height:88rpx; width:88rpx;" src="/image/contact/add.png"></image>
+			</view>
+		</view>
+
+	<!-- 底部 -->
+	<view class="bottom {{type!==1?'bottomPro':''}}">
+		<!-- 第一排的按钮们 -->
+		<view class="btnBox {{type!==1?'btnBoxPro':''}}">
+			<image wx:for="{{btnList}}" wx:key="item" data-id="{{item.id}}" bindtap="handleBtnTap" mode="aspectFit"
+				src="/image/contact/{{item.name}}.png"
+				style="height: {{item.height}}rpx; width: {{item.width}}rpx; margin-left:{{index*80+(index+1)*40}}rpx; transform: translateY(-{{item.height/2}}rpx);">
+			</image>
+			<!-- 转换模式按钮 -->
+			<view class="change" catchtap="handleArrowTap">
+				<text class="{{arrowFlag==0?'shang':'xia'}}">其他</text>
+				<view class="arrow0"></view>
+			</view>
+
+		</view>
+		<!-- 打赏/匿名 -->
+
+		<!-- 转换其他模式 -->
+		<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showChange}}">
+			<view class="flexBox">
+				<view wx:for="{{typeList}}" wx:key="item" class="item" bindtap="handleChangeType" data-id="{{item.type}}">
+					<image mode="aspectFit" class="itemImg" src="{{item.url}}"></image>
+					<text class="itemText">发布{{item.name}}</text>
+				</view>
+			</view>
+		</view>
+
+		<view class="option">
+			<view class="reward" wx:if="{{type===1}}">
+				<image class="size" mode="aspectFit" src="/image/contact/gold.png"></image>
+				<text class="btext">打赏金币</text>
+				<image mode="aspectFit" bindtap="minus" class="minus" src="/image/contact/minus.svg"></image>
+				<input value="{{goldNumber}}" bindblur="setGoldNumber" style="font-size: 30rpx"></input>
+				<image mode="aspectFit" bindtap="add" class="add" src="/image/contact/add.svg"></image>
+			</view>
+
+			<view class="noname" wx:if="{{type===1}}">
+				<image class="size" mode="aspectFit" src="/image/contact/noname.png"></image>
+				<text class="btext">匿名提问</text>
+				<view class="switchBox">
+					<switch checked color="#3654FD" bindchange="handleNonameTap"></switch>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="finish" bindtap="submit">发布{{initTypeList[type-1].name}}</view>
+	</view>
+
+</view>

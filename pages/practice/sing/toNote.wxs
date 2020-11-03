@@ -1,0 +1,13 @@
+//*********************判断几分音符函数 */
+var noteNumber = {
+
+  toNote: function (divisions,duration) {
+    return divisions / duration * 4
+  }
+
+}
+module.exports = {
+
+  toNote: noteNumber.toNote
+
+}

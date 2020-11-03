@@ -1,0 +1,51 @@
+<view class="layout">
+	<view class="top">
+		<view class="topitem">
+			<view class="topnumber">{{currentList.length}}</view>
+			<view class="toptext">当前课程</view>
+		</view>
+		<view class="topitem">
+			<view class="topnumber">{{finishedList.length}}</view>
+			<view class="toptext">通过课程</view>
+		</view>
+	</view>
+
+	<!-- 当前课程 -->
+	<view class="blk">
+		<text class="pointTitle">当前课程</text>
+	</view>
+
+	<block wx:for="{{currentList}}" wx:key="item">
+		<view class="card" bindtap="goto" data-type="{{item[6]}}" data-rank="{{item[5]}}">
+			<image class="cardimg" src="/image/study/course/example1.jpg" mode="aspectFill"></image>
+			<view class="cardInfo">
+				<view class="cardTitle">{{item[4]}}</view>
+				<view class="cardtext marginLeft">{{item[3]}}季学期</view>
+				<view class="cardtext">{{item[2]}}</view>
+			</view>
+			<text class="cuIcon-right lg arrow"></text>
+		</view>
+	</block>
+
+	<view class="boundary"></view>
+
+	<!-- 通过课程 -->
+	<view class="blk">
+		<text class="pointTitle">通过课程</text>
+	</view>
+
+	<block wx:for="{{finishedList}}" wx:key="item">
+		<view class="card">
+			<image class="cardimg" src="/image/study/course/example1.jpg" mode="aspectFill"></image>
+			<view class="cardInfo">
+				<view class="titleWrapper">
+					<view class="cardTitle">{{item[4]}}</view>
+					<view class="cardtext marginLeft passtext">已通过</view>
+				</view>
+				<view class="cardtext marginLeft">{{item[3]}}季学期</view>
+				<view class="cardtext">{{item[2]}}</view>
+			</view>
+		</view>
+	</block>
+	<view class="boundary"></view>
+</view>

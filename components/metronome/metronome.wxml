@@ -1,0 +1,7 @@
+<!--components/metronome.wxml-->
+
+	<view class="beatWrapper"bindtap="tapHandle"style="background:{{isPlay?'#3654fd30':'#ffffff'}}">
+    <audio src="http://litten.me/weapp/beats/strong.mp3" action="{{strongAction}}"></audio> 
+    <audio src="http://litten.me/weapp/beats/week.mp3" action="{{weekAction}}"></audio>
+		<image class="beat" src="/image/hear/hearSelect/beat.png" mode="aspectFit" ></image>
+	</view>

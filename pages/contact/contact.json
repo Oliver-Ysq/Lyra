@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "card": "/components/card/card",
+    "state": "/components/state/state"
+  },
+  "navigationBarTitleText": "交流",
+  "backgroundColor": "#F0EDFF",
+  "enablePullDownRefresh": true
+}

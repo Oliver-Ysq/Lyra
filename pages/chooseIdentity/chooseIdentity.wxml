@@ -1,0 +1,24 @@
+<view class="ctn">
+	<view class="head"></view>
+	<view class="main">
+		<view class="txt">
+			<text>请选择你的身份</text>
+		</view>
+		<view class="btns">
+			<view id="stu" class="btn" bindtap="handleStudentTap">
+				<view class="wrapper">
+					<image class="p1" mode="aspectFit" src="../../image/chooseIdentity/student.png"></image>
+				</view>
+				<view class="title" style="color: #B9415E;">我是学生</view>
+			</view>
+
+			<view id="teach" class="btn" bindtap="handleTeacherTap">
+				<view class="wrapper">
+					<image class="p2" mode="aspectFit" src="../../image/chooseIdentity/teacher.png"></image>
+				</view>
+				<view class="title" style="color:#38308D">我是老师</view>
+			</view>
+		</view>
+		<view class="block"></view>
+	</view>
+</view>

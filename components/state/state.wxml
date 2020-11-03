@@ -1,0 +1,28 @@
+<view class="main">
+  <view class="head">
+    <image mode="aspectFit" class="profileImg" src="/image/my/head.jpg"></image>
+    <view class="info">
+      <view class="name">
+        {{info.name}}
+      </view>
+      <view class="level">LV {{info.id}}</view>
+      <view class="time">{{info.time}}分钟前</view>
+    </view>
+
+  </view>
+
+  <!-- 文字、图片信息 -->
+  <view class="content">
+    <slot></slot>
+  </view>
+
+
+  <view class='line'></view>
+  <view class="footer">
+    <input placeholder="我要评论" placeholder-class="placeholder"></input>
+    <image src="/image/contact/comment.png"style="margin-top:6rpx"></image>
+    <text style="color:#8E8E93;">{{info.commentNum}}</text>
+    <image src="/image/contact/like{{info.hasLike==0?'0':'1'}}.png" bindtap="handleLikeTap"></image>
+    <text style="color:{{info.hasLike==0?'#8E8E93':'#ff7498'}};">{{info.likeNum}}</text>
+  </view>
+</view>

@@ -1,0 +1,15 @@
+/* components/metronome.wxss */
+.beatWrapper {
+  margin-left: 2vmin;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8vmin;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.beat {
+  width: 5vmin;
+  height: 5vmin;
+}

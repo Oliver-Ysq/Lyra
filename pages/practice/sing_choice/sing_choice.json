@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "i-tabs": "/dist/tabs/index",
+    "i-tab": "/dist/tab/index",
+    "i-collapse": "/dist/collapse/index",
+    "i-collapse-item": "/dist/collapse-item/index",
+    "circle": "/components/circle/circle"
+  },
+  "navigationBarTitleText": "视唱",
+  "backgroundColor": "#eeeaff"
+}

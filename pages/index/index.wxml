@@ -1,0 +1,209 @@
+<view class="index">
+
+	<view class="header">
+	</view>
+
+	<view class="main">
+		<swiper class='swiper' current='{{currentIndex}}'>
+			<view class="cu-modal {{getInfo==0?'show':''}}">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end">
+						<view class="content">提示</view>
+					</view>
+					<view class="padding-xl">
+						是否同意小程序获取您的微信用户信息？
+					</view>
+					<view class="cu-bar bg-white justify-center">
+						<view class="action">
+							<button style="width: 200rpx; heigth: 30rpx; margin: 12rpx auto;" class="cu-btn bg-white" bindtap="hideInfo">拒绝</button>
+							<button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" style="width: 200rpx; heigth: 30rpx; margin: 12rpx auto;" class="cu-btn bg-blue" bindtap="hideInfo">同意</button>
+
+						</view>
+					</view>
+				</view>
+			</view>
+			<view class="cu-modal {{modalFlag===1?'show':''}}">
+				<view class="cu-dialog">
+					<view class="cu-bar bg-white justify-end">
+						<view class="content">提示</view>
+					</view>
+					<view class="padding-xl">
+						请完善你的信息
+					</view>
+					<view class="cu-bar bg-white justify-center">
+						<view class="action">
+							<button style="width: 200rpx; heigth: 30rpx; margin: 12rpx auto;" class="cu-btn bg-blue" bindtap="hideModal">好的</button>
+						</view>
+					</view>
+				</view>
+			</view>
+
+
+			<swiper-item catchtouchmove="banMove" style="display:flex; flex-direction: column">
+				<view class="itemMain">
+
+					<swiper class="choose" current="{{chooseIndex}}">
+
+						<swiper-item class="chooseItem" catchtouchmove="banMove">
+							<form>
+								<view class="formCtn">
+									<view style="margin-top:16rpx; height: 120rpx;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title">级别</view>
+										<picker bindchange="changeLevel1" value="{{level1}}" range="{{levelPicker1}}">
+											<view style="font-size: 26rpx" class="picker">
+												{{level1?levelPicker1[level1]:'请选择你的级别'}}
+											</view>
+										</picker>
+									</view>
+
+									<view style="margin-top: 12rpx;height: 120rpx;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title">专业</view>
+										<picker bindchange="changeMajor1" value="{{major1}}" range="{{majorPicker1}}">
+											<view style="font-size: 26rpx;" class="picker">
+												{{major1?majorPicker1[major1]:'请选择你的专业'}}
+											</view>
+										</picker>
+									</view>
+
+
+									<view style="margin-top: 16rpx;position:relative;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title {{animationStu1===true?'in':'out'}}">学号</view>
+										<input value="{{studentID1}}" bindfocus="animationStu1Focus" bindblur="animationStu1Leave" bindinput="changeStudentID1" style="height: 100rpx; margin-top: 20rpx; font-size: 26rpx" placeholder-style="text-align: right;" placeholder="请输入你的学号"></input>
+									</view>
+
+									<view style="margin-top: 16rpx; position: relative;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title {{animationID1===true?'in':'out'}}">身份证号</view>
+										<input value="{{ID1}}" bindfocus="animationID1Focus" bindblur="animationID1Leave" bindinput="changeID1" style="height: 100rpx; margin-top: 20rpx; font-size: 26rpx" placeholder-style="text-align: right;" placeholder="请输入你的身份证号"></input>
+									</view>
+
+								</view>
+							</form>
+							<view class="back" bindtap="back">
+								<text style="margin-right: 12rpx;" class="txt">我是本校学生</text>
+								<text style="color: #5B63A8;" class="cuIcon-right lg text-gray"></text>
+							</view>
+						</swiper-item>
+
+						<swiper-item class="chooseItem" catchtouchmove="banMove">
+							<form>
+
+								<view class="formCtn">
+
+									<view style="margin-top:16rpx; position: relative;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title {{animation0===true?'in':'out'}}">姓名</view>
+										<input value="{{studentName0}}" bindfocus="animation0focus" bindblur="animation0leave" bindinput="changeStudentName0" style="font-size: 26rpx; height: 100rpx; margin-top: 20rpx; {{animation0===false?'text-align: right;':''}}" placeholder-style="text-align: right;" placeholder="请输入你的姓名"></input>
+									</view>
+
+									<view style="margin-top:12rpx; position: relative;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title {{animationID0===true?'in':'out'}}">验证码</view>
+										<input value="{{studentID0}}" bindfocus="animationID0focus" bindblur="animationID0leave" bindinput="changeStudentID0" style="font-size: 26rpx; height: 100rpx; margin-top: 20rpx; {{animationID0===false?'text-align: right;':''}}" placeholder-style="text-align: right;" placeholder="请输入你的验证码"></input>
+									</view>
+
+									<!-- <view style="margin-top: 12rpx;height: 120rpx;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title">级别</view>
+										<picker bindchange="changeLevel0" value="{{level0}}" range="{{levelPicker0}}">
+											<view style="height: 108rpx;font-size: 26rpx" class="picker">
+												{{level0?levelPicker0[level0]:'请选择你的级别'}}
+											</view>
+										</picker>
+									</view> -->
+
+									<view style="margin-top: 12rpx;height: 120rpx;" class="cu-form-group margin-top">
+										<view style="font-size:32rpx; color: #38308D;" class="title">助教</view>
+										<picker bindchange="changeMajor0" value="{{major0}}" range="{{majorPicker0}}">
+											<view style="font-size: 26rpx;" class="picker">
+												{{majorPicker0[major0]}}
+											</view>
+										</picker>
+									</view>
+								</view>
+
+							</form>
+							<view class="chooseItemBottom">
+								<text class="txt">不是本校学生</text>
+								<view style="height: 40rpx;"></view>
+								<view class="buttons">
+									<button style="font-weight: normal;" class="cu-btn round line-pink" bindtap="handlePinkTap">{{'校外学生试听'}}</button>
+									<view class="or">or</view>
+									<button style="font-weight: normal;" class="cu-btn round line-blue" bindtap="handleBlueTap">{{'校外人员试听'}}</button>
+								</view>
+							</view>
+						</swiper-item>
+
+						<swiper-item class="chooseItem" catchtouchmove="banMove">
+							<form>
+								<view style="margin-top: 16rpx;position: relative;" class="cu-form-group margin-top">
+									<view style="font-size:32rpx; color: #38308D;" class="title {{animationCmp2===true?'in':'out'}}">工作单位</view>
+									<input value="{{company}}" bindfocus="animationCmp2Focus" bindblur="animationCmp2Leave" bindinput="changeCompany" style="font-size: 26rpx; height: 100rpx; margin-top: 20rpx;" placeholder-style="text-align: right;" placeholder="请输入你的学号"></input>
+								</view>
+
+								<view style="margin-top: 12rpx;position: relative;" class="cu-form-group margin-top">
+									<view style="font-size:32rpx; color: #38308D;" class="title {{animationID2===true?'in':'out'}}">身份证号</view>
+									<input value="{{ID2}}" bindfocus="animationID2Focus" bindblur="animationID2Leave" bindinput="changeID2" style="font-size: 26rpx; height: 100rpx; margin-top: 20rpx;" placeholder-style="text-align: right;" placeholder="请输入你的身份证号"></input>
+								</view>
+							</form>
+							<view style="text-align: left!important;" class="back" bindtap="back">
+								<text style="color: #5B63A8;" class="cuIcon-back lg text-gray"></text>
+								<text style="margin-left: 12rpx;" class="txt">我是本校学生</text>
+							</view>
+						</swiper-item>
+
+					</swiper>
+				</view>
+				<view class="itemBox">
+					<view class="btnBox">
+						<button class="btn" hover-class="btn-hover"bindtap="next">完成</button>
+					</view>
+				</view>
+			</swiper-item>
+
+			<swiper-item catchtouchmove="banMove" style="display:flex; flex-direction: column">
+				<view class="itemMain">
+					<view class="item2Header">选择您的智能助手</view>
+					<view class="item2Main">
+
+						<!-- 用于展示暂时使用 -->
+						<view bindtap="chooseAssistant" class="wrapper" style="{{assChoosen==1?'border: 1px solid #D0CDEF':''}}">
+							<image src="/image/sing/assistant/1.png" class="assImg" mode="aspectFit"></image>
+						</view>
+
+					</view>
+				</view>
+				<view class="itemBox">
+					<view class="btnBox">
+						<view class="lastBtn" bindtap="last">上一步</view>
+						<button class="btn" bindtap="next">下一步</button>
+					</view>
+				</view>
+			</swiper-item>
+
+			<swiper-item catchtouchmove="banMove" style="display:flex; flex-direction: column">
+				<view class="itemMain puliMain">
+					<view class="item3Header">请唱出下图中的乐谱:</view>
+					<view class="item3Main">我正在学习视唱练耳。
+					</view>
+					<view class="item3Footer">
+					</view>
+				</view>
+				<view class="itemBox">
+					<view class="btnBox">
+						<view class="lastBtn" bindtap="last">上一步</view>
+						<button class="btn" bindtap="next">下一步</button>
+					</view>
+				</view>
+			</swiper-item>
+
+		</swiper>
+	</view>
+
+	<!-- <view class="footer" style="width:500rpx; margin-left:auto; margin-right: auto;">
+		<view style="height:160rpx; background: rgb(254,254,254); paddng:auto;" class="bg-white padding">
+			<view class="cu-steps">
+				<view class="cu-item {{index===num?'text-blue':''}}" wx:for="{{numList}}" wx:key="item">
+					<text class="cuIcon-title" data-index="{{index + 1}}"></text>
+				</view>
+			</view>
+		</view>
+	</view> -->
+
+</view>

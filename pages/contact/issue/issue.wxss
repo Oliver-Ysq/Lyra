@@ -1,0 +1,293 @@
+/* pages/contact/issue/issue.wxss */
+
+.ctn {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background: #f0edff;
+}
+
+.content {
+  width: 100%;
+}
+
+.plh {
+  font-size: 28rpx;
+  color: #555;
+}
+
+.title {
+  height: 8vh;
+  font-size: 28rpx;
+  color: #555;
+  line-height: 100rpx;
+  position: relative;
+  padding: 0 40rpx;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  right: auto;
+  left: 3%;
+  height: 2rpx;
+  width: 94%;
+  background-color: #d0cdef;
+}
+
+.text {
+  box-sizing: border-box;
+  padding: 40rpx;
+  font-size: 28rpx;
+  color: #555;
+  height: 35vh;
+  overflow: scroll;
+  width: 100%;
+}
+
+.addImg {
+  position: fixed;
+  bottom: 35vh;
+  width: 100%;
+  height: 22vh;
+}
+
+.pic {
+  box-sizing: border-box;
+  width: 192rpx;
+  height: 192rpx;
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  float: left;
+  background: #d7d7d7;
+}
+
+.bottom {
+  background: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 35vh;
+}
+
+.btnBox {
+  box-sizing: border-box;
+  height: 24%;
+  width: 100%;
+  position: relative;
+}
+
+.btnBox::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  right: auto;
+  left: 3%;
+  height: 2rpx;
+  width: 94%;
+  background-color: #d0cdef;
+}
+
+.btnBox image {
+  position: absolute;
+  top: 50%;
+}
+
+.option {
+  box-sizing: border-box;
+  height: 54%;
+  width: 100%;
+  position: relative;
+}
+
+.reward {
+  height: 50%;
+  width: 100%;
+  position: relative;
+  line-height: 9.6vh;
+}
+
+.reward::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  top: auto;
+  right: auto;
+  left: 3%;
+  height: 2rpx;
+  width: 94%;
+  background-color: #d0cdef;
+}
+
+.noname {
+  height: 50%;
+  width: 100%;
+  position: relative;
+  line-height: 9.6vh;
+}
+
+.finish {
+  box-sizing: border-box;
+  height: 22%;
+  width: 100%;
+  line-height: 7.7vh;
+  text-align: center;
+  font-size: 34rpx;
+  color: white;
+  background: #5b63a8;
+}
+
+.change {
+  position: relative;
+  float: right;
+  margin-right: 84rpx;
+  height: 100%;
+  line-height: 8.6vh;
+  z-index: 9999;
+}
+
+.shang {
+  font-size: 24rpx;
+  position: relative;
+}
+
+.shang::after {
+  content: '';
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  left: 68rpx;
+  top: 12rpx;
+  transform: rotate(-45deg);
+  border-right: 4rpx solid #5b63a8;
+  border-top: 4rpx solid #5b63a8;
+}
+
+.xia {
+  font-size: 24rpx;
+  position: relative;
+}
+
+.xia::after {
+  content: '';
+  display: block;
+  width: 20rpx;
+  height: 20rpx;
+  position: absolute;
+  left: 68rpx;
+  bottom: 12rpx;
+  transform: rotate(45deg);
+  border-right: 4rpx solid #5b63a8;
+  border-bottom: 4rpx solid #5b63a8;
+}
+
+.size {
+  height: 44rpx;
+  width: 44rpx;
+  position: absolute;
+  left: 40rpx;
+  top: 4.8vh;
+  transform: translateY(-22rpx);
+}
+
+.btext {
+  position: absolute;
+  left: 120rpx;
+  font-size: 28rpx;
+}
+
+.switchBox {
+  position: absolute;
+  right: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.minus {
+  position: absolute;
+  left: 45%;
+  top: 4.8vh;
+  transform: translateY(-4rpx);
+  width: 32rpx;
+  height: 8rpx;
+}
+
+.add {
+  position: absolute;
+  left: 45%;
+  top: 4.8vh;
+  transform: translateY(-16rpx) translateX(204rpx);
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.reward >input {
+  box-sizing: border-box;
+  position: absolute;
+  left: 45%;
+  top: 4.8vh;
+  transform: translateY(-30rpx) translateX(56rpx);
+  width: 124rpx;
+  height: 60rpx;
+  border-radius: 12rpx;
+  background: #f0edff;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+
+.commodity_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 7.7vh;
+  left: 0;
+  z-index: 99999;
+  background: #fff;
+  height: 18.9vh;
+  padding: 4rpx;
+}
+
+.flexBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.item {
+  height: 6.3vh;
+  line-height: 6.3vh;
+  position: relative;
+}
+
+.itemImg {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 3.15vh;
+  transform: translateY(-20rpx);
+}
+
+.itemText {
+  font-size: 26rpx;
+  color: 333333;
+  position: absolute;
+  left: 75rpx;
+}
+
+.btnBoxPro {
+  top: 18.9vh;
+  background: white;
+}
+
+.bottomPro {
+  background: rgb(240, 237, 255);
+}

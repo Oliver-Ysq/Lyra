@@ -1,0 +1,25 @@
+<wxs module="hearChoice" src="./hear_choice.wxs"></wxs>
+<progress percent="{{progress}}" hidden="{{progressFlag}}"activeColor="#3654fd" stroke-width="3"/>
+<view class='productNav'>
+  <!-- 左侧 -->
+  <view class='left'>
+    <view wx:for="{{tabList}}" class="{{active==item.id?'selected':'normal'}}" id="{{item.id}}" bindtap="switchNav" wx:key="item">{{item.name}}</view>
+  </view>
+  <!-- 右侧 -->
+  <view class='right'>
+    <view class='type'>
+      <!-- current:当前所在滑块的 index -->
+      <!-- vertical:滑动方向是否为纵向 -->
+      <swiper current='{{currentTab}}' vertical='{{true}}'>
+        <!-- catchtouchmove 阻止弹窗后滚动穿透 -->
+        <swiper-item wx:for="{{tabList}}" wx:for-index="number" id="{{item.id}}" wx:key="number" catchtouchmove="false">
+          <scroll-view class="scroll" scroll-y>
+            <view wx:for="{{ list[number] }}" wx:for-index="nth" class="cell" wx:key="item" bindtap="goto" data-name="{{hearChoice.toPercent(item[0][0][0][0][0][0][0][0][0][0],item[0][0][0][0][0][0][0][0][0][1])}}"id="{{number}}"data-difficulty="{{nth+1}}">
+              <text style="margin-right: 24rpx;font-size:32rpx;color:#000000">{{nth+1}}</text> {{hearChoice.toPercent(item[0],item[1])}}
+            </view>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>

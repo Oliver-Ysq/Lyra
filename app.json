@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/chooseIdentity/chooseIdentity",
+    "pages/study/study",
+    "pages/my/score/score",
+    "pages/my/wrong/wrong",
+    "pages/practice/hear/hear",
+    "pages/practice/hearSelectPractise/hearSelectPractise",
+    "pages/practice/practice",
+    "pages/practice/sing/sing",
+    "pages/contact/contact",
+    "pages/contact/issue/issue",
+    "pages/practice/hear_choice/hear_choice",
+    "pages/practice/sing_choice/sing_choice",
+    "pages/my/my",
+    "pages/my/friends/friends",
+    "pages/my/collect/collect",
+    "pages/my/notice/notice",
+    "pages/contact/detail/detail",
+    "pages/my/qiandao/qiandao",
+    "pages/my/setting/setting",
+    "pages/my/mycoin/mycoin",
+    "pages/study/chooseCourse/chooseCourse",
+    "pages/study/sightsinging/sightsinging",
+    "pages/homework/homework",
+    "pages/study/hearSelect/hearSelect",
+    "pages/my/mycourse/mycourse"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#3654FD",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "/image/tabbar/study.png",
+        "iconPath": "/image/tabbar/study1.png",
+        "pagePath": "pages/study/study",
+        "text": "学习"
+      },
+      {
+        "selectedIconPath": "/image/tabbar/practice.png",
+        "iconPath": "/image/tabbar/practice1.png",
+        "pagePath": "pages/homework/homework",
+        "text": "作业"
+      },
+      {
+        "selectedIconPath": "/image/tabbar/contact.png",
+        "iconPath": "/image/tabbar/contact1.png",
+        "pagePath": "pages/contact/contact",
+        "text": "交流"
+      },
+      {
+        "selectedIconPath": "/image/tabbar/my.png",
+        "iconPath": "/image/tabbar/my1.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

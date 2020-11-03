@@ -1,0 +1,31 @@
+<view class="bg">
+
+  <view class="head"></view>
+
+  <view class="sing" style="position: relative">
+    <view id="MIC">
+      <image src="/image/choice/mic.png" style="height:54rpx; width:54rpx; "></image>
+    </view>
+    <view id="shichang">视唱</view>
+    <!-- 视唱按钮 -->
+    <view id="box">
+      <view wx:for="{{singList}}" bindtap="sing" data-id="{{index}}" wx:key="item">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="hear" style="position: relative">
+
+    <!-- 撑开高度 -->
+    <view style="height: 3vh"></view>
+
+    <view id="headphone">
+      <image src="/image/choice/earphone.png" style="height:54rpx; width:54rpx;"></image>
+    </view>
+    <view id="lianer">练耳</view>
+    <!-- 练耳按钮 -->
+    <view id="box">
+      <view wx:for="{{hearList}}" bindtap="hear" data-id="{{index}}" wx:key="item">{{item}}</view>
+      <view bindtap="doHearSelectPractice">练耳选择题</view>
+    </view>
+  </view>
+</view>

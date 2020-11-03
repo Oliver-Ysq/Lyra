@@ -1,0 +1,42 @@
+<view class="card1">
+	<view class="portraitWrapper">
+		<view class="porText">头像</view>
+		<view class="portrait">
+			<image bindtap="choosePortrait" src="{{portrait}}" mode="aspectFit"></image>
+		</view>
+	</view>
+	<view class="cu-form-group margin-top">
+		<view class="title">助教</view>
+		<picker bindchange="PickerChange" value="{{index}}" range="{{picker}}">
+			<view class="picker">
+				{{index?picker[index]:assistant}}
+			</view>
+		</picker>
+	</view>
+</view>
+
+<view class="cu-form-group" style="margin-top: 0rpx">
+	<view class="title">选择题-选项行间距大小</view>
+	<picker bindchange="optionSizeChange" value="{{optionIndex}}" range="{{optionSizeList}}">
+		<view class="picker">
+			{{optionIndex? optionSizeList[optionIndex] : optionSizeList[optionMargin-1] }}
+		</view>
+	</picker>
+</view>
+<!--view class="cu-form-group margin-top">
+		<view class="title">是否自动下载并保存音频</view>
+		<switch checked="{{allowSave}}" bindchange="switchAllowSaveChange"></switch>
+	</view-->
+
+<view class="card2">
+	<view class="Text">我的声音</view>
+	<view class="Info" style="flex: 1.5;">
+		<text>剩余{{recordTimesLeft}}次重新录制机会</text>
+		<text class="cuIcon-right lg text-gray arrow"></text>
+	</view>
+</view>
+
+<view class="cu-form-group" style="margin-top: 16rpx;">
+	<view class="title">缓存</view>
+	<button class="cu-btn block bg-yellow margin-tb-sm lg" style="margin-right:0rpx;width:300rpx" disabled="{{storageFlag}}" bindtap="clearStorage">清除缓存</button>
+</view>

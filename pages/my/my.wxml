@@ -1,0 +1,70 @@
+<view class="ctn">
+	<!-- 顶部区域 -->
+	<view class="top">
+		<image bindtap="choosePortrait" class="profileImg" mode="aspectFit" src="{{portrait}}"></image>
+		<view class="name">{{name}}</view>
+		<view class="level">lv{{level}} {{levelName[level]}}</view>
+		<text class="cuIcon-calendar lg calendar" bindtap="gotoQiandao"></text>
+	</view>
+	<!-- 弧线底边 -->
+	<view class="circle"></view>
+	<!-- 四个按钮 -->
+	<view class="buttonBox">
+
+		<view bindtap="gotoFriends" class="card">
+			<view class="imgBox">
+				<image src="/image/my/friends.png"></image>
+			</view>
+			<view>我的好友</view>
+		</view>
+
+		<view bindtap="gotoMycourse" class="card">
+			<view class="imgBox">
+				<image src="/image/my/course.png"></image>
+			</view>
+			<view>我的课程</view>
+		</view>
+
+		<view bindtap="gotoCollect" class="card">
+			<view class="imgBox">
+				<image src="/image/my/like.png"></image>
+			</view>
+			<view>我的收藏</view>
+		</view>
+
+		<view bindtap="gotoNotice" class="card">
+			<view class="imgBox">
+				<image src="/image/my/information.png"></image>
+			</view>
+			<view>消息通知</view>
+		</view>
+		<view wx:if="{{msgNum>0}}" class="msgNum">{{msgNum}}</view>
+	</view>
+	<view class="space"></view>
+	<!-- 列表 -->
+	<i-cell-group>
+		<!-- <i-cell title="我的金币" i-class="cell" bindtap="gotoMycoin">
+      <image slot="icon" src="/image/my/gold.png" mode="aspectFit" class="icon"></image>
+    </i-cell>
+    <i-cell title="我的成绩" i-class="cell" bindtap="gotoScore">
+      <image slot="icon" src="/image/my/scoreList.png" mode="aspectFit" class="icon"></image>
+    </i-cell> -->
+		<i-cell title="个人设置" i-class="cell" bindtap="gotoSetting">
+			<image slot="icon" src="/image/my/setting.png" mode="aspectFit" class="icon"></image>
+		</i-cell>
+		<view class="boundary"></view>
+		<i-cell title="关于我们" i-class="cell">
+			<image slot="icon" src="/image/my/aboutUs.png" mode="aspectFit" class="icon"></image>
+		</i-cell>
+		<view class="boundary"></view>
+		<!-- <i-cell title="意见反馈" i-class="cell">
+      <image slot="icon" src="/image/my/feedback.png" mode="aspectFit" class="icon"></image>
+    </i-cell> -->
+		<i-cell title="退出登录" i-class="cell" bindtap="quit">
+			<image slot="icon" src="/image/my/back.svg" mode="aspectFit" class="icon"></image>
+		</i-cell>
+		<view class="boundary"></view>
+
+	</i-cell-group>
+	<!--button style="margin-top: 20px; border: 1px solid;" bindtap="tmpChooseClass">一键选课</button-->
+</view>

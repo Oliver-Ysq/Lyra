@@ -1,0 +1,53 @@
+<view class="ctn">
+	<scroll-view scroll-x class="bg-white nav">
+		<view class="flex text-center">
+			<view class="cu-item flex-sub normalSize {{index==TabCur?'bigSize':''}} {{index==TabCur?'color_'+TabCur:''}}" wx:for="{{tabList}}" wx:key="item" bindtap="tabSelect" data-id="{{index}}">
+				{{item}}
+			</view>
+		</view>
+	</scroll-view>
+	<swiper class="swiper" duration="500"  current="{{TabCur}}">
+		<!-- content-点赞 -->
+		<swiper-item >
+			<scroll-view style="height: 100%;">
+				<block wx:for="{{dianzanList}}" wx:key="item">
+					<view class="cardWrapper">
+						<view class="who1">{{item.name}}赞了我的</view>
+						<view class="content1">
+							{{item.detail}}
+						</view>
+						<image src="{{item.url}}" mode="aspectFit" class="cardimg1"></image>
+					</view>
+				</block>
+			</scroll-view>
+		</swiper-item>
+		<!-- content-回复 -->
+		<swiper-item >
+			<scroll-view scroll-x="false" scroll-y="true"  style="height: 100%;">
+			<block wx:for="{{replyList}}" wx:key="item" wx:for-index="bindex">
+				<view class="cardWrapper"  data-id="{{item.id}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap="toDetail">
+					<view class="who1">{{item.name}}{{typeList[item.type][0]}}了我的{{typeList[item.type][1]}}</view>
+					<view class="content1">
+						{{item.detail}}
+					</view>
+					<image src="{{item.url}}" mode="aspectFit" class="cardimg1"></image>
+				</view>
+				<view class="comment">{{item.comment}}</view>
+			</block>
+		</scroll-view>
+		</swiper-item>
+		<!-- content-系统消息 -->
+		<swiper-item >
+			<block wx:for="{{systemList}}" wx:key="item">
+				<view class="cardWrapper">
+					<view class="who1">{{item.type==0?"我的回答得到了"+item.name+"的打赏":item.title}}</view>
+					<view class="content1">
+						{{item.detail}}
+					</view>
+					<image src="{{item.url}}" mode="aspectFit" class="cardimg1"></image>
+					<view wx:if="{{item.type==0}}" class="money">¥ {{item.money}}</view>
+				</view>
+			</block>
+		</swiper-item>
+	</swiper>
+</view>

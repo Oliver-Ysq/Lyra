@@ -1,0 +1,80 @@
+.bg {
+  width: 100vw;
+  height: 100vh;
+  background: #f0edff;
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  flex: 1;
+}
+
+.sing {
+  flex: 4;
+}
+
+.hear {
+  flex: 8;
+}
+
+#MIC {
+  padding-left: 5rpx;
+  padding-top: 5rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background: rgb(152, 164, 254);
+  border-radius: 10rpx;
+  margin-left: 12.5vw;
+}
+
+#headphone {
+  padding-left: 6rpx;
+  padding-top: 8rpx;
+  width: 64rpx;
+  height: 64rpx;
+  background: rgb(248, 169, 197);
+  border-radius: 10rpx;
+  margin-left: 12.5vw;
+}
+
+#shichang {
+  position: absolute;
+  left: 28vw;
+  top: 1vh;
+  display: inline-box;
+  font-size: 40rpx;
+  color: #38308d;
+  font-weight: bold;
+}
+
+#lianer {
+  position: absolute;
+  left: 28vw;
+  top: 3vh;
+  display: inline-box;
+  font-size: 40rpx;
+  color: #38308d;
+  font-weight: bold;
+}
+
+#box {
+  margin-left: 12.5vw;
+  margin-top: 2vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 75vw;
+}
+
+#box>view {
+  font-size: 26rpx;
+  background: white;
+  border-radius: 10rpx;
+  margin-bottom: 1.25vh;
+  height: 90rpx;
+  line-height: 96rpx;
+  text-align: center;
+  width: 35vw;
+}

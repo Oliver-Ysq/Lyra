@@ -1,0 +1,218 @@
+/* pages/index/index.wxss */
+
+.index {
+  background: rgb(254, 254, 254);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  /* height: 216rpx; */
+  height: 188rpx;
+  width: 100vw;
+  background: rgb(35, 72, 138);
+}
+
+.main {
+  border-radius: 80rpx 80rpx 0 0;
+  flex: 1;
+}
+
+.footer {
+  background: rgb(254, 254, 254) !important;
+  width: 100vw;
+}
+
+.swiper {
+  height: 100%;
+}
+
+.btnBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.lastBtn {
+  padding-left: 128rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #ff7498;
+}
+
+.btn {
+  background: linear-gradient(to left, rgba(255, 116, 152, 0.99) 0%, rgba(255, 116, 151, 0.96) 2%, rgb(255, 116, 116) 98%, rgb(255, 116, 116) 100%);
+  box-sizing: border-box;
+  width: 376rpx;
+  height: 80rpx;
+  color: white;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 126rpx;
+  box-shadow: -2rpx -2rpx 10rpx 2rpx rgba(0, 0, 0, 0.2);
+}
+.btn-hover{
+  background: linear-gradient(to left, rgba(255, 116, 152, 0.99) 0%, rgba(255, 116, 151, 0.96) 2%, rgb(255, 116, 116) 98%, rgb(255, 116, 116) 100%);
+  box-sizing: border-box;
+  width: 376rpx;
+  height: 80rpx;
+  color: white;
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 126rpx;
+  box-shadow: -2rpx -2rpx 10rpx 2rpx rgba(0, 0, 0, 0.2);
+    box-shadow:0px 0px 10px  #c7385e inset; 
+
+}
+
+.itemMain {
+  flex: 1;
+  padding: 20rpx 54rpx;
+}
+
+.itemBox {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+}
+
+.choose {
+  height: 100%;
+}
+
+.chooseItemBottom {
+  margin-top: 30rpx;
+}
+
+.txt {
+  font-size: 26rpx;
+  color: #8a8a8a;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.or {
+  display: flex;
+  flex-direction: coloum;
+  justify-content: center;
+  align-items: center;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+}
+
+.back {
+  margin: 16rpx 54rpx 0 54rpx;
+  text-align: right;
+}
+
+.item3Header {
+  color: #5b63a8;
+  font-size: 28rpx;
+  margin: 24rpx 0 48rpx 0;
+}
+
+.item3Main {
+  border-radius: 18rpx;
+  height: 136rpx;
+  width: 684rpx;
+  line-height: 136rpx;
+  text-align: center;
+  background: #f0edff;
+  font-size: 32rpx;
+  color: #5b63a8;
+}
+
+.item3Footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.in {
+  position: absolute !important;
+  left: 30rpx !important;
+  top: 4rpx !important;
+  font-size: 24rpx !important;
+  transition: all 300ms linear;
+}
+
+.out {
+  transition: all 300ms linear;
+}
+
+/************* 以下均为展示用途 ************/
+.puliMain{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+
+.puliWrapper {
+  height: 400rpx;
+  width: 640rpx;
+}
+
+.puli {
+  height: 400rpx;
+  width: 640rpx;
+}
+
+.assImg {
+  width: 440rpx;
+  height: 440rpx;
+}
+
+.wrapper {
+  margin-top: 40rpx;
+  padding: 50rpx;
+  border-radius: 490rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 490rpx;
+  height: 490rpx;
+  margin-left: 50%;
+  transform: translateX(-245rpx);
+
+}
+
+.record {
+  margin-top: 24rpx;
+  background: -webkit-linear-gradient(top, white, #F4F2FF);
+  border-radius: 50%;
+  height: 160rpx;
+  width: 160rpx;
+  padding-top: 32rpx;
+  padding-left: 32rpx;
+  box-shadow: 2px 4px 5px 3px #B4AFEE66
+}
+
+.recordImg{
+  width:100rpx; height:100rpx;
+}
+
+.uploadWrapper{
+  width: 100%;
+}
+
+.upload{
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 32rpx;
+  margin-bottom: 12rpx;
+}

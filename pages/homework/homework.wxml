@@ -1,0 +1,66 @@
+<scroll-view scroll-x class="bg-white nav">
+	<view class="flex text-center">
+		<view class="cu-item flex-sub navColor {{index==TabCur?'navpick cur':''}}" wx:for="{{nav}}" wx:key="item" bindtap="tabSelect" data-id="{{index}}">
+			{{item}}
+		</view>
+	</view>
+</scroll-view>
+<swiper class="swiper" current="{{TabCur}}" duration="500">
+
+	<swiper-item>
+		<!-- 待完成 -->
+
+		<view class="card-image-container" wx:if="{{todoList.length==0}}">
+			<image src="/image/state/缺省 .png" style="max-width:70%;">
+			</image>
+			<text style="position: absolute; z-index: 100;">暂无作业</text>
+		</view>
+
+		<block wx:for="{{todoList}}" wx:key="item">
+			<view class="card" bindtap="goto" data-partid="{{item.info[0]}}" data-type="{{item.id.solfeggio}}" data-kind="{{item.id.question_type}}">
+				<view class="left">
+					<view class="detail">
+						<view class="name">{{typeList[item.info[1]-0]}}{{item.info[2]}}级</view>
+						<view class="course">课次{{item.info[3]}} - {{item.id.question_type}}{{item.id.question_num}}</view>
+					</view>
+					<view class="time">{{item.info[4]=="0"?'':item.info[4]}}</view>
+				</view>
+				<view class="right rightBg1">
+					<view><text class="cuIcon-noticefill lg notice color-white"></text></view>
+					<view class="text28 color-white">待完成</view>
+				</view>
+			</view>
+		</block>
+	</swiper-item>
+
+	<swiper-item>
+		<!-- 已完成 -->
+
+		<view class="card-image-container" wx:if="{{finishedList.length==0}}">
+			<image src="/image/state/缺省 .png" style="max-width:70%;">
+			</image>
+			<text style="position: absolute; z-index: 100;">暂无作业</text>
+		</view>
+
+		<block wx:for="{{finishedList}}" wx:key="item">
+			<view class="card">
+				<view class="left">
+					<view class="detail">
+						<view class="name">{{typeList[item.info[1]-0]}}{{item.info[2]}}级</view>
+						<view class="course">课次{{item.info[3]}} - {{item.id.question_type}}{{item.id.question_num}}</view>
+					</view>
+					<view class="cardBottom">
+						<view class="time">{{item.info[4]=="0"?'':item.info[4]}}</view>
+						<view class="score" wx:if="{{item.info[1]=='0'}}">{{'score: '+item.info[6]+'/100'}}</view>
+						<view class="score" wx:if="{{item.info[1]=='3'}}"></view>
+					</view>
+				</view>
+				<view class="right rightBg2">
+					<view><text class="cuIcon-check lg check color-purple"></text></view>
+					<view class="text28 color-purple">已完成</view>
+				</view>
+			</view>
+
+		</block>
+	</swiper-item>
+</swiper>

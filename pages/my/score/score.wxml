@@ -1,0 +1,85 @@
+<view style="height: 100vh; background: rgb(240,237,255);">
+  <view class="head">
+    <view class='select_box'>
+      <view class='select' catchtap='selectTap'>
+        <text class='select_text'>{{selectData[index]}}</text>
+        <text class="cuIcon-unfold lg text-gray"></text>
+      </view>
+      <view class='option_box' style='height:{{selectShow?(selectData.length>5?325:selectData.length*50):0}}rpx;'>
+        <text class='option' wx:for='{{selectData}}' wx:key='this' data-index='{{index}}' catchtap='optionTap'>{{item}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="card">
+    <view class="cardHead solid-bottom">
+      <text class="cuIcon-upstagefill lg text-yellow" style="font-size: 48rpx;"></text>
+      <text class="headText">考试成绩</text>
+      <button bindtap="changeScore" style="width:100rpx; font-size: 24rpx; heigth:48rpx; min-height:20px!important;" class="cu-btn round line-orange shadow sm {{scoreFlag===1?'bg':''}}">期末</button>
+      <button bindtap="changeScore" style="width:100rpx; font-size: 24rpx; heigth:48rpx; min-height:20px!important;" class="cu-btn round line-orange shadow sm {{scoreFlag===0?'bg':''}}">期中</button>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>视唱
+      <text class="scoreText">{{score[scoreFlag].singScore}}</text>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>练耳
+      <text class="scoreText">{{score[scoreFlag].hearScore}}</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="cardHead solid-bottom">
+      <text class="cuIcon-calendar lg" style="color: rgb(211,90,38); font-size: 48rpx;"></text>
+      <text class="headText">考勤分值</text>
+      <text class="scoreText">{{kaoqin.kaoqinScore}}</text>
+    </view>
+    <view class="progressBar">
+      <view class="padding bg-white">
+        <view class="cu-progress radius striped active" style="">
+          <view class="bg-red" style="width:{{loading?(kaoqin.chuqin/(kaoqin.chuqin+kaoqin.qingjia+kaoqin.quexi)*100):''}}%;"></view>
+          <view class="bg-cyan" style="width:{{loading?(kaoqin.qingjia/(kaoqin.chuqin+kaoqin.qingjia+kaoqin.quexi)*100):''}}%;"></view>
+          <view class="bg-olive" style="width:{{loading?(kaoqin.quexi/(kaoqin.chuqin+kaoqin.qingjia+kaoqin.quexi)*100):''}}%;"></view>
+        </view>
+      </view>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>出勤
+      <text class="scoreText">{{kaoqin.chuqin}}</text>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>请假
+      <text class="scoreText">{{kaoqin.qingjia}}</text>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>缺席
+      <text class="scoreText">{{kaoqin.quexi}}</text>
+    </view>
+  </view>
+  <view class="card">
+    <view class="cardHead solid-bottom">
+      <text class="cuIcon-activityfill lg" style="color: #FF7498; font-size: 48rpx;"></text>
+      <text class="headText">作业完成度</text>
+      <text class="scoreText">{{homeworkScore}}</text>
+    </view>
+    <view class="progressBar">
+      <view class="padding bg-white">
+        <view class="cu-progress radius striped active">
+          <view class="bg-red" style="width:{{loading?(homework.finish/(homework.finish+homework.after+homework.undone)*100):''}}%;"></view>
+          <view class="bg-cyan" style="width:{{loading?(homework.after/(homework.finish+homework.after+homework.undone)*100):''}}%;"></view>
+          <view class="bg-olive" style="width:{{loading?(homework.undone/(homework.finish+homework.after+homework.undone)*100):''}}%;"></view>
+        </view>
+      </view>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>已完成
+      <text class="scoreText">{{homework.finish}}</text>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>补交
+      <text class="scoreText">{{homework.after}}</text>
+    </view>
+    <view class="scoreItem">
+      <text style="margin-right: 20rpx;" class="cuIcon-title lg text-yellow"></text>未完成
+      <text class="scoreText">{{homework.undone}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,78 @@
+/* pages/my/setting/setting.wxss */
+.cu-form-group .title {
+  min-width: calc(4em + 30rpx);
+}
+.card1 {
+  height: 334rpx;
+  margin-top: 16rpx;
+  background: white;
+}
+
+.portraitWrapper {
+  width: 100%;
+  height: 212rpx;
+  /* border: 1px solid; */
+  padding-left: 28rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.assistantWrapper {
+  box-sizing: border-box;
+  width: calc(100%-36rpx);
+  height: 122rpx;
+  margin-left: 18rpx;
+  margin-right: 18rpx;
+  border-top: 2rpx solid #EAE8FC;
+  padding-left: 22rpx;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.porText {
+  font-size: 28rpx;
+  line-height: 212rpx;
+}
+
+.portrait>image {
+  height: 168rpx;
+  width: 168rpx;
+  margin-top: 22rpx;
+  margin-right: 48rpx;
+  border-radius: 50%;
+}
+
+.Text{
+  font-size: 28rpx;
+  line-height: 120rpx;
+  flex: 1;
+}
+
+.Info{
+  flex:1;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: #8E8E93;
+}
+.arrow{
+  font-size: 32rpx;
+  position: absolute;
+  right: 32rpx;
+  bottom: 40rpx;
+}
+
+.card2{
+  height: 120rpx;
+  background: white;
+  box-sizing: border-box;
+  width: 100%;
+  padding-left: 28rpx;
+  padding-right: 0rpx;
+  display: flex;
+  flex-direction: row;
+}

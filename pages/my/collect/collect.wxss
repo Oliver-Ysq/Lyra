@@ -1,0 +1,30 @@
+/* pages/my/collect/collect.wxss */
+.container {
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0 !important;
+}
+
+.CTN {
+  display: block;
+  width: 100%;
+  background: #F0EDFF;
+  height: 100vh;
+  overflow: scroll;
+  padding-bottom: 20rpx;
+}
+
+.slot {
+  margin-left: 40rpx;
+  margin-bottom: 30rpx;
+}
+
+.slot image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-right: 16rpx;
+}
