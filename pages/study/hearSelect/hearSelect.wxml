@@ -1,24 +1,8 @@
-<wxs module="pkg">
-	function upper(s) {
-		return s.toUpperCase()
-	}
+<wxs module="pkg" src="./pkg.wxs"></wxs>
 
-	function myslice(s) {
-		s = s.slice(2, s.length)
-		return s
-	}
-	module.exports = {
-		upper: upper,
-		myslice: myslice
-	}
-</wxs>
+<!-- 播放器 -->
 <view class="floating" wx:if="{{stateFlag<2}}" bindtouchstart="bindTouchStart" catchtouchmove="bindTouchMove" style="{{moveFlag?'top:' + top + 'px; right:' + right + 'px;':'top:60px; right: 22px'}}">
-	<!-- 播放器 -->
-
 	<!-- 节拍器 -->
-	<!--view class="beatWrapper">
-		<image class="beat" src="/image/hear/hearSelect/beat.png" mode="aspectFit" bindtap="playBeat"></image>
-	</view-->
 	<metronome beat="{{questionList[currentIndex].beat}}" bpm="{{questionList[currentIndex].bpm}}" note="{{questionList[currentIndex].note}}"></metronome>
 	<!-- 标准音 -->
 	<view class="standard" bindtap="playStandard">
@@ -89,7 +73,6 @@
 					</view>
 					<view class="optionItem">
 						<image class="option-img" src="{{base}}{{oitem.pic_path}}" mode="widthFix"></image>
-						<!-- <image class="option-img" src="{{base}}{{oitem.xml_path}}" mode="widthFix"></image> -->
 						<view style="font-size:14px; margin-left: 20px;">{{oitem.txt}}</view>
 					</view>
 				</view>

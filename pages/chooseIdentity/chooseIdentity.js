@@ -1,8 +1,6 @@
 // pages/chooseIdentity/chooseIdentity.js
 Page({
-
   data: {
-
   },
   handleStudentTap() {
     wx.navigateTo({

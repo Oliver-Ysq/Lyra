@@ -27,29 +27,7 @@ Page({
       ["评论", "状态"],
       ["回复", "评论"]
     ],
-    replyList: [
-      // {
-      //   name: "大大",
-      //   type: 0,
-      //   detail: "xxx",
-      //   comment: "这是因为xxx",
-      //   url: "/image/my/head.jpg"
-      // },
-      // {
-      //   name: "小小",
-      //   type: 1,
-      //   detail: "xxx",
-      //   comment: "这个好好看",
-      //   url: "/image/my/head.jpg"
-      // },
-      // {
-      //   name: "旺财",
-      //   type: 2,
-      //   detail: "xxx",
-      //   comment: "呕",
-      //   url: "/image/my/head.jpg"
-      // }
-    ],
+    replyList: [],
     systemList: [{
       type: 0,
       name: "小明",
@@ -127,40 +105,10 @@ Page({
               toEnd: true
             })
           }
-
         }
       }
     )
-    // wx.request({
-    //   url: app.globalData.serverURL + 'minzu/discussion/get',
-    //   data: {
-    //     mode: "BUM",
-    //     openid: "toolboy"
-    //   },
-    //   header: {
-    //     'content-type': 'application/json'
-    //   },  
-    //   success: function (res) {
-    //     console.log(res);
-    //     for(var i=0; i<res.data.length; i++){
-    //       var obj = {
-    //         name :  res.data[i][0],
-    //         id :  res.data[i][1],
-    //         type :  0,
-    //         kind : res.data[i][2],
-    //         comment : res.data[i][3], 
-    //         detail : res.data[i][4],
-    //       }
-    //       that.data.replyList[i] = obj;
-    //       that.setData({
-    //         replyList: that.data.replyList
-    //       });
-    //     }
-    //   }
-
-    // })
   },
-
 
 
   /**

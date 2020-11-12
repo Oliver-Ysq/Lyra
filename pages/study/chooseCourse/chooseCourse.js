@@ -1,13 +1,14 @@
 const app = getApp()
-var progressNum = 0
+let progressNum = 0
 Page({
   data: {
     type: 0, // 0-视唱；3-练耳
     rank: "01", // 难度：01-基础级
-
     active: 0, // 当前课次 == active + 1
     currentTab: 0,
     progressFlag: false,
+    singTypeNum: 3,
+    hearTypeNum: 7,
 
     singList: ["单声部精唱", "单声部视谱即唱", "双声部"],
     hearList: ["音阶", "音组", "音程", "和弦", "节奏", "单声部旋律", "双声部旋律"],
@@ -70,7 +71,7 @@ Page({
     let that = this
     //查看完成答题情况
 
-    console.log('section_ifdo'+that.numToString(parseInt(that.data.active) + 1))
+    console.log('section_ifdo' + that.numToString(parseInt(that.data.active) + 1))
     wx.cloud.callFunction({
       name: "getData",
       data: {
@@ -99,29 +100,9 @@ Page({
         }
       }
     )
-    // wx.request({
-    //   url: app.globalData.serverURL + 'minzu/section_ifdo',
-    //   data: {
-    //     openid: app.globalData.openid,
-    //     solfeggio: that.data.type.toString(),
-    //     // tonum:"1",
-    //     rank: that.data.rank,
-    //     lesson_num: that.numToString(that.data.active + 1)
-    //   },
-    //   method: "GET",
-    //   success(res) {
-    //     console.log(res.data)
-    //     that.setData({
-    //       stateList: res.data
-    //     })
-    //   },
-    //   fail(err) {
-    //     console.log(err)
-    //   }
-    // })
+
 
     //查看总成绩
-
     wx.cloud.callFunction({
       name: "getData",
       data: {
@@ -149,48 +130,8 @@ Page({
         }
       }
     )
-
-    // wx.request({
-    //   url: app.globalData.serverURL + 'minzu/get_lesson_score',
-    //   data: {
-    //     openid: app.globalData.openid,
-    //     rank: that.data.rank,
-    //     solfeggio: that.data.type.toString(),
-    //     lesson_num: that.numToString(that.data.active + 1)
-    //   },
-    //   method: "GET",
-    //   success: res => {
-    //     console.log(res.data)
-    //     that.setData({
-    //       totalScore: res.data == "None" ? 0 : res.data
-    //     })
-    //   },
-    //   fail: err => {
-    //     console.log(err)
-    //   }
-    // })
   },
 
-  // saveToStorage(key, data) {
-  //   wx.setStorage({
-  //     key: key,
-  //     data: data
-  //   })
-  // },
-
-  // // 本地内存搜索
-  // searchStorage(key) {
-  //   try {
-  //     const value = wx.getStorageSync(key)
-  //     if (value) {
-  //       console.log()
-  //       console.log(value)
-  //       return value;
-  //     }
-  //   } catch (e) {
-  //     // Do something when catch error
-  //   }
-  // },
 
   onLoad(options) {
     console.log(options.type) //type：0-视唱/ 3-练耳
@@ -198,7 +139,7 @@ Page({
     this.setData({
       type: options.type,
       rank: options.rank,
-      totalLargeNum: options.type == 0 ? 3 : 7
+      totalLargeNum: options.type == 0 ? this.data.singTypeNum : this.data.hearTypeNum
     })
     wx.setNavigationBarTitle({
       title: options.title,

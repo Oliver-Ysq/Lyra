@@ -5,6 +5,7 @@
 
 	<view class="main">
 		<swiper class='swiper' current='{{currentIndex}}'>
+
 			<view class="cu-modal {{getInfo==0?'show':''}}">
 				<view class="cu-dialog">
 					<view class="cu-bar bg-white justify-end">
@@ -37,7 +38,6 @@
 					</view>
 				</view>
 			</view>
-
 
 			<swiper-item catchtouchmove="banMove" style="display:flex; flex-direction: column">
 				<view class="itemMain">

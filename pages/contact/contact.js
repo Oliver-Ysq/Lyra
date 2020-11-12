@@ -19,43 +19,6 @@ Page({
     toEnd: false,
     currentStart: 0,
     currentEnd: 10,
-    // cardInfo: [{
-    //   id: 0,
-    //   name: '黄秋子',
-    //   time: '1',
-    //   title: '请教一下第六题',
-    //   commentNum: '5',
-    //   star: 1,
-    //   done: true,
-    //   reward: 2,
-    //   imgList: ['/image/my/head.jpg', '/image/my/head.jpg'],
-    //   headSrc:'/image/my/head.jpg',
-    // }, {
-    //   id: 1,
-    //   name: '炭治郎',
-    //   time: '3',
-    //   title: '请教一下第二题',
-    //   commentNum: '0',
-    //   star: 0,
-    //   done: true,
-    //   reward: 3,
-    //   imgList: ['/image/my/head.jpg', '/image/my/head.jpg'],
-    //   headSrc:'/image/my/head.jpg',
-
-    // }, {
-    //   id: 2,
-    //   name: '祢豆子',
-    //   time: '15',
-    //   title: '请教一下第三题',
-    //   commentNum: '3',
-    //   star: 1,
-    //   done: false,
-    //   reward: 5,
-    //   imgList: [],
-    //   headSrc:'',
-
-    // }], 
-
     mvList: [{
       title: "我录了一段《xxx》，快来听听吧",
       imgUrl: "",
@@ -163,11 +126,6 @@ Page({
       console.log(e.detail.id + "号问题已取消收藏")
     }
   },
-  // handleDetailTap(){
-  //   wx.navigateTo({
-  //     url: '/pages/contact/detail/detail',
-  //   })
-  // },
   handleLikeChange(e) {
     let like = "commentList[" + e.detail.id + "].hasLike"
     let likeNum = "commentList[" + e.detail.id + "].likeNum"
@@ -513,47 +471,6 @@ Page({
           }
         }
       )
-      // wx.request({
-      //   url: app.globalData.serverURL + 'minzu/discussion/get',
-      //   data: {
-      //     mode: "SBP",
-      //     start: that.data.currentStart,
-      //     end: that.data.currentEnd,
-      //   },
-      //   header: {
-      //     'content-type': 'application/json'
-      //   },
-      //   success: function (res) {
-      //     if(res.data.length<10){
-      //       that.setData({
-      //         toEnd: true
-      //       })
-      //     }
-      //     for(var i=0; i<res.data.length; i++){
-      //       that.timeFn(res.data[i][3])
-      //       var time2 = res.data[i][3].substring(5,res.data[i][3].length-3)
-      //       var obj = {
-      //         id :  res.data[i][0],
-      //         name :  res.data[i][2],
-      //         time : that.timeFn(res.data[i][3]),
-      //         time2: time2,
-      //         title: res.data[i][6],
-      //         content: res.data[i][7],
-      //         commentNum: res.data[i][4],
-      //         star: 0,
-      //         done: false,
-      //         reward: 3,
-      //         imgList: that.handleImgStr(res.data[i][5]),
-      //         headSrc:'/image/my/head.jpg',
-      //       }
-      //       that.data.cardInfo.push(obj);
-      //       that.setData({
-      //         cardInfo: that.data.cardInfo
-      //       });
-      //     }
-      //   }
-
-      // })
     } else {
       wx.showToast({
         title: '没有更多内容',

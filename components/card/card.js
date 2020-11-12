@@ -6,11 +6,9 @@ Component({
       type: Object,
       value: {}
     },
-
   },
 
   data: {
-
   },
   options: {
     multipleSlots: true // 允许组件中使用多个slot

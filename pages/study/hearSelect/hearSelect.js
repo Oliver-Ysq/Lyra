@@ -104,11 +104,6 @@ Page({
     answerList: []
   },
 
-  // 节拍器
-  playBeat() {
-    console.log('播放节拍器')
-  },
-
   // 悬浮窗按下
   bindTouchStart(e) {
     console.log('touchstart')
@@ -119,7 +114,7 @@ Page({
     })
   },
 
-  // 悬浮出拖动
+  // 悬浮拖动
   bindTouchMove(e) {
     let that = this
     that.setData({
@@ -170,12 +165,6 @@ Page({
     console.log('真实值' + app.globalData.serverURL + app.globalData.standardAudioSrc)
     console.log(standardAudio.src)
     standardAudio.play()
-  },
-
-  // 字母转换大写
-  upper(s) {
-    s.toUpperCase()
-    return s
   },
 
   // 清除 myaudio 绑定的函数
@@ -1128,8 +1117,6 @@ Page({
           })
           if (that.data.havePlayedTimes >= that.data.shouldPlayTimes) { //如果下一遍就播完了
             myaudio.startTime = 0
-            // myaudio.onPlay(() => {
-            // })
             myaudio.offEnded()
             console.log("这是最后一遍")
 
@@ -1189,9 +1176,6 @@ Page({
     if (that.data.isplaying && that.data.rotateFlag) {
       console.log('！！正在播放音频')
       myaudio.stop()
-      // that.setData({
-      //   rotateFlag: 0,
-      // })
     } else if (that.data.isplaying && !that.data.rotateFlag) {
       console.log('！！正在等待间隔')
       clearInterval(that.data.interval)

@@ -1,0 +1,12 @@
+function upper(s) {
+  return s.toUpperCase()
+}
+
+function myslice(s) {
+  s = s.slice(2, s.length)
+  return s
+}
+module.exports = {
+  upper: upper,
+  myslice: myslice
+}

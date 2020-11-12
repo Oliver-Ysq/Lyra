@@ -60,37 +60,6 @@ Page({
         }
       }
     )
-    // wx.request({
-
-    //   url: app.globalData.serverURL + 'minzu/classcard',
-    //   data: {
-    //     openid: app.globalData.openid,
-    //   },
-    //   method: "GET",
-    //   success(res) {
-    //     console.log(res.data)
-    //     let list = res.data
-
-    //     //计算进度条
-    //     for (let i = 0; i < list.length; i++) {
-    //       let tmp = list[i][1].split('/')
-    //       let p = parseInt((parseInt(tmp[0]) / parseInt(tmp[1])) * 100) + "%"
-    //       list[i].push(p)
-    //     }
-
-    //     that.setData({
-    //       cardList: list
-    //     })
-    //     setTimeout(function () {
-    //       that.setData({
-    //         loading: true
-    //       })
-    //     }, 400)
-    //   },
-    //   fail(e) {
-    //     console.log(e)
-    //   }
-    // })
   },
 
   getcard() {
